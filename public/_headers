@@ -1,15 +1,11 @@
-# Security headers for every response, including production.
+# Security headers for every response. Next copies this file into out/,
+# and Workers static assets apply it.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
 
-# Cloudflare Pages preview hostnames (branch and commit URLs on
-# *.pages.dev). A custom production domain does not match this rule.
-# If production itself is only a pages.dev hostname, delete this block
-# or the live site will send noindex.
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex, nofollow
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  X-Frame-Options: DENY
+# workers.dev hostnames, including version and preview URLs.
+# ccbaylife.com does not match this pattern.
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex

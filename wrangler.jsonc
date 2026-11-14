@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "coastal-bend-guide",
+  // Workers runtime compatibility date for this config. No Worker script.
+  "compatibility_date": "2026-11-14",
+  "assets": {
+    // Next.js `output: "export"` writes the site here.
+    "directory": "./out",
+    // trailingSlash writes route/index.html. This mode serves that file at
+    // /route/ and redirects /route to /route/.
+    "html_handling": "auto-trailing-slash",
+    // A missing path serves the nearest 404.html with status 404.
+    "not_found_handling": "404-page"
+  }
+}

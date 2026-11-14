@@ -86,7 +86,7 @@ export default function PrivacyPage() {
             Hosting
           </h2>
           <p className="mt-3">
-            When the site is deployed, the host (planned: Cloudflare Pages) may keep standard technical
+            When the site is deployed, the host (Cloudflare Workers) may keep standard technical
             logs, such as IP address, browser, and the URL requested, in order to run the service. This
             project does not add its own analytics on top of those logs.
           </p>
