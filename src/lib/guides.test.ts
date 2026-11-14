@@ -45,7 +45,7 @@ describe("publishedGuides", () => {
 });
 
 describe("sample guides", () => {
-  it("ships the starter outlines and the first guide batch as drafts", () => {
+  it("publishes the first guide batch and keeps the orientation outlines as drafts", () => {
     const guides = getAllGuides();
     expect(guides.map((guide) => guide.slug).sort()).toEqual([
       "beaches-orientation",
@@ -60,12 +60,22 @@ describe("sample guides", () => {
       "things-to-do-orientation",
       "uss-lexington-museum-visit",
     ]);
+    const published = new Set([
+      "best-local-restaurants-corpus-christi",
+      "boat-tours-fishing-charters-piers-corpus-christi",
+      "corpus-christi-nightlife",
+      "family-things-to-do-corpus-christi",
+      "padre-island-national-seashore-day-trip",
+      "selena-corpus-christi-mirador-de-la-flor",
+      "uss-lexington-museum-visit",
+    ]);
     for (const guide of guides) {
-      expect(guide.draft).toBe(true);
+      expect(guide.draft).toBe(!published.has(guide.slug));
       expect(guide.content).not.toMatch(/Draft placeholder/);
     }
     const outlines = guides.filter((guide) => guide.slug.endsWith("-orientation"));
     for (const guide of outlines) {
+      expect(guide.draft).toBe(true);
       expect(guide.title.toLowerCase()).toContain("draft");
       expect(guide.content).not.toMatch(/\$\d/);
     }

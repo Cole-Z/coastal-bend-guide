@@ -32,11 +32,29 @@ describe("toSitemapEntries", () => {
 });
 
 describe("getSitemapEntries", () => {
-  it("leaves the checked-in drafts out of the real sitemap", () => {
+  it("lists the published guides and leaves the orientation drafts out", () => {
     const urls = getSitemapEntries().map((entry) => entry.url);
     expect(urls).toContain(`${SITE_URL}/`);
     expect(urls).toContain(`${SITE_URL}/privacy/`);
     expect(urls).toContain(`${SITE_URL}/topics/moving/`);
-    expect(urls.some((url) => url.includes("/guides/"))).toBe(false);
+    for (const slug of [
+      "best-local-restaurants-corpus-christi",
+      "boat-tours-fishing-charters-piers-corpus-christi",
+      "corpus-christi-nightlife",
+      "family-things-to-do-corpus-christi",
+      "padre-island-national-seashore-day-trip",
+      "selena-corpus-christi-mirador-de-la-flor",
+      "uss-lexington-museum-visit",
+    ]) {
+      expect(urls).toContain(`${SITE_URL}/guides/${slug}/`);
+    }
+    for (const slug of [
+      "beaches-orientation",
+      "fishing-orientation",
+      "neighborhoods-orientation",
+      "things-to-do-orientation",
+    ]) {
+      expect(urls).not.toContain(`${SITE_URL}/guides/${slug}/`);
+    }
   });
 });
