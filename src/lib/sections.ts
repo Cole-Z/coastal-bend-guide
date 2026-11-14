@@ -79,3 +79,8 @@ export function topicPath(slug: SectionSlug): string {
 export function guidePath(slug: string): string {
   return `/guides/${slug}/`;
 }
+
+/** Static Markdown copy of a published guide. Drafts do not get this file. */
+export function guideMarkdownPath(slug: string): string {
+  return `/guides/${slug}.md`;
+}
