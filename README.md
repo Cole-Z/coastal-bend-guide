@@ -83,7 +83,7 @@ draft: true
 
 `section` is one of: `things-to-do`, `beaches`, `fishing`, `family-and-kids`, `food`, `neighborhoods`, `moving`.
 
-3. Write the body in Markdown. The page title comes from `title`, so start body headings at `##`. Keep `draft: true` until every fact is checked. Drafts render on the site with a banner, send `noindex`, and are left out of `sitemap.xml`.
+3. Write the body in Markdown. The page title comes from `title`, so start body headings at `##`. Keep `draft: true` until every fact is checked. Drafts render on the site with a banner, send `noindex`, and are left out of `sitemap.xml`. They also stay out of `llms.txt` and do not get a public `.md` file. A published guide is written to `/guides/your-slug.md` during `npm run build`, and that URL is listed in `/llms.txt`. Every guide page has Copy for AI and Download .md controls for that same text.
 4. Set `updated` to the day you changed the page. That date is `lastmod` once the guide is published.
 5. Remove `draft: true` (or set it to `false`) when the page is ready. It then joins the sitemap and can be indexed.
 6. If you change the homepage, a section intro, or the privacy page, bump `SITE_CONTENT_UPDATED` in `src/lib/site.ts`. Those pages use that date for `lastmod`. Guide dates do not use the build clock.
@@ -101,7 +101,7 @@ The file still has a TODO for brokerage advertising rules and the Texas TREC Inf
 ## Project layout
 
 - `content/guides/` — MDX guides
-- `src/app/` — routes: `/`, `/topics/[section]`, `/guides/[slug]`, `/privacy`, `sitemap.xml`, `robots.txt`
+- `src/app/` — routes: `/`, `/topics/[section]`, `/guides/[slug]`, `/privacy`, `sitemap.xml`, `robots.txt`, plus `/llms.txt` and published `/guides/[slug].md` written at the end of the build
 - `src/config/realtor.ts` — realtor profile
 - `src/lib/` — guide parsing, sitemap dates, structured data
 - `public/_headers` — preview `noindex` and a few security headers
