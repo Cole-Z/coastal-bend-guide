@@ -1,0 +1,15 @@
+# Security headers for every response, including production.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+
+# Cloudflare Pages preview hostnames (branch and commit URLs on
+# *.pages.dev). A custom production domain does not match this rule.
+# If production itself is only a pages.dev hostname, delete this block
+# or the live site will send noindex.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY

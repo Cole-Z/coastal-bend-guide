@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-sand: #f3ecdf;
+  --color-foam: #fffaf3;
+  --color-ink: #1a2a30;
+  --color-muted: #3e5158;
+  --color-gulf: #12343c;
+  --color-tide: #14555c;
+  --color-sea: #d5e6e4;
+  --color-sunset: #8c3f22;
+  --color-line: #e4d5c0;
+  --font-sans: var(--font-source), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body {
+  background: #f3ecdf;
+  color: #1a2a30;
+}
+
+:focus-visible {
+  outline: 3px solid #8c3f22;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #1f6f74;
+  color: #fffaf3;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 50;
+  transform: translateY(-120%);
+  border-radius: 999px;
+  background: #fffaf3;
+  color: #12343c;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  transform: none;
+}
+
+#sections,
+#guides,
+#moving {
+  scroll-margin-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
