@@ -30,7 +30,7 @@ export default function PrivacyPage() {
         ])}
       />
       <nav aria-label="Breadcrumb" className="text-sm text-muted">
-        <Link href="/" className="font-semibold text-gold underline underline-offset-4">
+        <Link href="/" className="font-semibold text-ocean underline underline-offset-4">
           Home
         </Link>
         <span aria-hidden="true"> / </span>

@@ -15,7 +15,7 @@ function CardHeading({ variant, headingId }: { variant: RealtorCardVariant; head
           <h2 id={headingId} className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
             Moving to Corpus Christi?
           </h2>
-          <p className="mt-2 font-display text-2xl text-gold">Work with a local realtor</p>
+          <p className="mt-2 font-display text-2xl text-ocean">Work with a local realtor</p>
         </div>
       );
     case "embedded":
@@ -52,10 +52,10 @@ export function RealtorCard({
           width={realtor.photo.width}
           height={realtor.photo.height}
           loading="lazy"
-          className="h-40 w-40 rounded-full bg-night object-cover"
+          className="h-40 w-40 rounded-full bg-sand object-cover"
         />
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-gold">{realtor.brokerage}</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-ocean">{realtor.brokerage}</p>
           <p className="mt-1 font-display text-3xl font-semibold text-ink">{realtor.name}</p>
           <p className="mt-1 text-muted">{realtor.role}</p>
           {realtor.officeCity ? <p className="mt-1 text-muted">{realtor.officeCity}</p> : null}
@@ -78,14 +78,14 @@ export function RealtorCard({
               href={realtor.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-full bg-gold px-5 py-2.5 font-semibold text-gold-ink"
+              className="inline-flex rounded-full bg-ocean px-5 py-2.5 font-semibold text-ocean-ink"
             >
               {realtor.profileLinkLabel}
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <a
               href={realtorMailto(realtor)}
-              className="inline-flex rounded-full border border-gold px-5 py-2.5 font-semibold text-gold"
+              className="inline-flex rounded-full border border-ocean px-5 py-2.5 font-semibold text-ocean"
             >
               Email about moving
             </a>
@@ -97,7 +97,7 @@ export function RealtorCard({
               <p className="text-sm text-muted">{realtor.email}</p>
             )}
             {realtor.phone ? (
-              <a href={realtorTel(realtor.phone)} className="font-semibold text-gold underline underline-offset-2">
+              <a href={realtorTel(realtor.phone)} className="font-semibold text-ocean underline underline-offset-2">
                 {realtor.phone}
               </a>
             ) : null}

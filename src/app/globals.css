@@ -1,36 +1,36 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-night: #070b12;
-  --color-bay: #0c121b;
-  --color-foam: #161e2c;
-  --color-ink: #f6f1e7;
-  --color-muted: #d4cdc0;
-  --color-gold: #e8b15a;
-  --color-gold-ink: #1c1408;
-  --color-line: #314056;
+  --color-sand: #f6f1e6;
+  --color-foam: #fffdf8;
+  --color-ink: #1a2c34;
+  --color-muted: #3e5560;
+  --color-ocean: #0c5c78;
+  --color-ocean-ink: #f7f4ee;
+  --color-gold: #8a5a10;
+  --color-line: #e3d6c2;
   --font-sans: var(--font-source), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background: #0c121b;
-  color: #f6f1e7;
+  background: #f6f1e6;
+  color: #1a2c34;
 }
 
 :focus-visible {
-  outline: 3px solid #e8b15a;
+  outline: 3px solid #0c5c78;
   outline-offset: 3px;
 }
 
 ::selection {
-  background: #e8b15a;
-  color: #1c1408;
+  background: #0c5c78;
+  color: #f7f4ee;
 }
 
 .skip-link {
@@ -40,8 +40,8 @@ body {
   z-index: 50;
   transform: translateY(-120%);
   border-radius: 999px;
-  background: #e8b15a;
-  color: #1c1408;
+  background: #0c5c78;
+  color: #f7f4ee;
   padding: 0.5rem 1rem;
   font-weight: 600;
 }

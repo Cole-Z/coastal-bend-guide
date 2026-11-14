@@ -41,14 +41,14 @@ export default function HomePage() {
                   href={topicPath(section.slug)}
                   className="flex h-full flex-col rounded-3xl bg-foam p-5 ring-1 ring-line"
                 >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-night text-gold">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sand text-ocean">
                     <SectionIcon slug={section.slug} />
                   </span>
                   <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight text-ink">
                     {section.title}
                   </h3>
                   <span className="mt-2 leading-relaxed text-muted">{section.summary}</span>
-                  <span className="mt-4 text-sm font-semibold text-gold underline underline-offset-4">
+                  <span className="mt-4 text-sm font-semibold text-ocean underline underline-offset-4">
                     Open section
                   </span>
                 </Link>

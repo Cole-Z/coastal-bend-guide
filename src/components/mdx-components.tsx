@@ -9,10 +9,10 @@ export const guideMdxComponents: MDXComponents = {
   ol: (props) => <ol className="mt-4 list-decimal space-y-2 pl-5 text-lg leading-relaxed text-ink" {...props} />,
   li: (props) => <li className="pl-1" {...props} />,
   a: (props) => (
-    <a className="font-semibold text-gold underline decoration-gold/40 underline-offset-2 hover:decoration-gold" {...props} />
+    <a className="font-semibold text-ocean underline decoration-ocean/40 underline-offset-2 hover:decoration-ocean" {...props} />
   ),
   blockquote: (props) => (
-    <blockquote className="mt-6 border-l-4 border-gold bg-foam px-4 py-3 text-ink [&_p]:m-0 [&_p]:text-base" {...props} />
+    <blockquote className="mt-6 border-l-4 border-ocean bg-foam px-4 py-3 text-ink [&_p]:m-0 [&_p]:text-base" {...props} />
   ),
   strong: (props) => <strong className="font-semibold" {...props} />,
 };

@@ -26,7 +26,7 @@ export function GuideCard({ guide }: { guide: Guide }) {
       href={guidePath(guide.slug)}
       className="flex h-full flex-col rounded-3xl bg-foam p-5 ring-1 ring-line"
     >
-      <span className="flex flex-wrap items-center gap-2 text-sm font-semibold text-gold">
+      <span className="flex flex-wrap items-center gap-2 text-sm font-semibold text-ocean">
         {guide.draft ? <DraftBadge /> : null}
         <span>{section.title}</span>
       </span>

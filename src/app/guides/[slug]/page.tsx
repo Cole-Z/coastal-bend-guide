@@ -61,11 +61,11 @@ export default async function GuidePage({ params }: GuidePageProps) {
       />
       <JsonLd data={guideArticleJsonLd(guide, url)} />
       <nav aria-label="Breadcrumb" className="text-sm text-muted">
-        <Link href="/" className="font-semibold text-gold underline underline-offset-4">
+        <Link href="/" className="font-semibold text-ocean underline underline-offset-4">
           Home
         </Link>
         <span aria-hidden="true"> / </span>
-        <Link href={topicPath(section.slug)} className="font-semibold text-gold underline underline-offset-4">
+        <Link href={topicPath(section.slug)} className="font-semibold text-ocean underline underline-offset-4">
           {section.title}
         </Link>
         <span aria-hidden="true"> / </span>
@@ -73,7 +73,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
       </nav>
       <div className="mt-4 flex flex-wrap items-center gap-3">
         {guide.draft ? <DraftBadge /> : null}
-        <p className="text-sm font-semibold text-gold">{section.title}</p>
+        <p className="text-sm font-semibold text-ocean">{section.title}</p>
       </div>
       <h1 className="mt-3 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
         {guide.title}
@@ -93,7 +93,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <MDXRemote source={guide.content} components={guideMdxComponents} />
       </div>
       <p className="mt-12">
-        <Link href={topicPath(section.slug)} className="font-semibold text-gold underline underline-offset-4">
+        <Link href={topicPath(section.slug)} className="font-semibold text-ocean underline underline-offset-4">
           More in {section.title}
         </Link>
       </p>

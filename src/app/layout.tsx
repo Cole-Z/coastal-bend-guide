@@ -18,8 +18,8 @@ const fraunces = Fraunces({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#070b12",
-  colorScheme: "dark",
+  themeColor: "#f6f1e6",
+  colorScheme: "light",
 };
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${sourceSans.variable} ${fraunces.variable}`}>
-      <body className="flex min-h-screen flex-col bg-bay font-sans text-ink antialiased">
+      <body className="flex min-h-screen flex-col bg-sand font-sans text-ink antialiased">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
