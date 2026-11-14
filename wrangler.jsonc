@@ -3,6 +3,8 @@
   "name": "coastal-bend-guide",
   // Workers runtime compatibility date for this config. No Worker script.
   "compatibility_date": "2026-11-14",
+  // Workers Builds runs `wrangler preview` on pull requests. An empty block is enough.
+  "previews": {},
   "assets": {
     // Next.js `output: "export"` writes the site here.
     "directory": "./out",
