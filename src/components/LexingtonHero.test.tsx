@@ -21,7 +21,8 @@ describe("LexingtonHero", () => {
     expect(html).not.toContain("sunrise-480");
     expect(html).not.toContain("sunrise-768");
     expect(html).not.toContain("from-sand/95");
-    expect(html).toContain("hero-scrim");
+    expect(html).toContain("hero-scrim pointer-events-none absolute inset-0 hidden sm:block");
+    expect(html).toContain("aspect-[4/3]");
     expect(html).toContain('fetchPriority="high"');
     expect(html).toContain("Photo: Cole Zill");
   });

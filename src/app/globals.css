@@ -83,19 +83,7 @@ body {
   }
 }
 
-/* Soft sand wash behind the headline. Opaque where the type sits, then gone. */
-.hero-scrim {
-  background: linear-gradient(
-    to top,
-    rgb(246 241 230 / 0.97) 0%,
-    rgb(246 241 230 / 0.96) 72%,
-    rgb(246 241 230 / 0.95) 84%,
-    rgb(246 241 230 / 0.93) 92%,
-    rgb(246 241 230 / 0.45) 97%,
-    transparent 100%
-  );
-}
-
+/* Desktop only. On small screens the photo sits above the headline with no wash. */
 @media (min-width: 640px) {
   .hero-scrim {
     background: radial-gradient(
