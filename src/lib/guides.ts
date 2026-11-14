@@ -13,8 +13,8 @@ const guideFrontmatter = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   section: z.enum(SECTION_SLUGS),
-  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  updated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+  updated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   draft: z.boolean(),
 });
 
@@ -23,8 +23,8 @@ export interface Guide {
   title: string;
   description: string;
   section: SectionSlug;
-  date: string;
-  updated: string;
+  date?: string;
+  updated?: string;
   draft: boolean;
   content: string;
 }

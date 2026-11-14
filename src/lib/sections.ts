@@ -5,7 +5,7 @@ export const SECTIONS = [
     navLabel: "Things to do",
     summary: "Outings worth planning a day around, once each entry is checked.",
     intro:
-      "This section is for day trips and afternoon ideas in Corpus Christi and along the nearby coast. A sample guide below is an outline of topics to research. It is not a list of recommendations.",
+      "This section is for day trips and afternoon ideas in Corpus Christi and along the nearby coast. The guides below are drafts, and each one stays marked draft until its facts are checked.",
   },
   {
     slug: "beaches",
@@ -13,7 +13,7 @@ export const SECTIONS = [
     navLabel: "Beaches",
     summary: "Gulf front, bay access, and the barrier islands — as topics, not a parking map.",
     intro:
-      "This section will describe gulf-front beaches, bay access, and the barrier islands. The sample guide lists what to verify. It is not a map, and it does not state parking rules or hours.",
+      "This section covers gulf-front beaches, bay access, and the barrier islands. The guides below are drafts. Parking rules and hours belong in a guide after they are checked.",
   },
   {
     slug: "fishing",
@@ -21,23 +21,23 @@ export const SECTIONS = [
     navLabel: "Fishing",
     summary: "Bay, surf, and offshore, with regulations left to the state.",
     intro:
-      "This section will cover bay, surf, jetty, and offshore fishing in plain language. Licenses and limits stay with Texas Parks & Wildlife until an editor checks the current page and links it. The sample guide does not name charters or prices.",
+      "This section covers bay, surf, jetty, and offshore fishing in plain language. The guides below are drafts. License and limit details stay with Texas Parks & Wildlife until an editor checks the current page and links it.",
   },
   {
     slug: "family-and-kids",
     title: "Family & Kids",
     navLabel: "Family",
-    summary: "Outings that work with children. No list until it is verified.",
+    summary: "Outings that work with children, still being checked.",
     intro:
-      "This section will be for outings that work with children. There is no sample list yet: a list of attractions with ages, prices, or reviews would be invented. Start from the Things to Do outline, then add only places you have confirmed.",
+      "This section is for outings that work with children. The guides below are drafts, listed here while ages, prices, and other details are still being checked.",
   },
   {
     slug: "food",
     title: "Food",
     navLabel: "Food",
-    summary: "Where to eat. No restaurant list until it is verified.",
+    summary: "Where to eat, still being checked.",
     intro:
-      "This section will be where to eat around Corpus Christi. There is no sample restaurant list: names, addresses, prices, and reviews written from memory would be fake. Add a place when you can describe it from a visit or a source you trust.",
+      "This section is where to eat around Corpus Christi. The guides below are drafts, listed here while hours, prices, and other details are still being checked.",
   },
   {
     slug: "neighborhoods",

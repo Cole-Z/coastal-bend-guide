@@ -6,7 +6,7 @@ import { DraftBanner } from "@/components/DraftBanner";
 import { DraftBadge } from "@/components/DraftBadge";
 import { JsonLd } from "@/components/JsonLd";
 import { guideMdxComponents } from "@/components/mdx-components";
-import { formatDate } from "@/lib/dates";
+import { guideUpdatedLabel } from "@/lib/dates";
 import { getAllGuides, getGuideBySlug } from "@/lib/guides";
 import { getSection, guidePath, topicPath } from "@/lib/sections";
 import { SITE_URL } from "@/lib/site";
@@ -49,6 +49,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
   if (!guide) notFound();
   const section = getSection(guide.section);
   const url = `${SITE_URL}${guidePath(guide.slug)}`;
+  const dateLabel = guideUpdatedLabel(guide);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12">
@@ -78,11 +79,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
       <h1 className="mt-3 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
         {guide.title}
       </h1>
-      <p className="mt-3 text-muted">
-        {guide.date === guide.updated
-          ? `Outlined ${formatDate(guide.date)}`
-          : `Outlined ${formatDate(guide.date)} · Updated ${formatDate(guide.updated)}`}
-      </p>
+      {dateLabel ? <p className="mt-3 text-muted">{dateLabel}</p> : null}
       <p className="mt-4 text-lg leading-relaxed">{guide.description}</p>
       {guide.draft ? (
         <div className="mt-6">

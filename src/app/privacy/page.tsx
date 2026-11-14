@@ -76,8 +76,7 @@ export default function PrivacyPage() {
             Draft guides
           </h2>
           <p className="mt-3">
-            Pages marked Draft are outlines. They are not finished local advice. They ask search engines
-            not to index them.
+            Pages marked Draft are still being checked. They ask search engines not to index them.
           </p>
         </section>
 

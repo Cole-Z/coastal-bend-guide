@@ -6,7 +6,7 @@ import { SITE_CONTENT_UPDATED, SITE_URL } from "@/lib/site";
 export interface SitemapGuide {
   slug: string;
   section: SectionSlug;
-  updated: string;
+  updated?: string;
   draft: boolean;
 }
 
@@ -33,7 +33,8 @@ export function toSitemapEntries(args: {
   guides: readonly SitemapGuide[];
 }): SitemapEntry[] {
   const { siteUrl, contentUpdated, guides } = args;
-  const homeLastModified = latestDate([contentUpdated, ...guides.map((guide) => guide.updated)]);
+  const dated = guides.flatMap((guide) => (guide.updated ? [guide.updated] : []));
+  const homeLastModified = latestDate([contentUpdated, ...dated]);
 
   const entries: SitemapEntry[] = [
     {
@@ -47,7 +48,9 @@ export function toSitemapEntries(args: {
   for (const section of SECTIONS) {
     const sectionDates = [
       contentUpdated,
-      ...guides.filter((guide) => guide.section === section.slug).map((guide) => guide.updated),
+      ...guides.flatMap((guide) =>
+        guide.section === section.slug && guide.updated ? [guide.updated] : [],
+      ),
     ];
     entries.push({
       url: absolute(siteUrl, topicPath(section.slug)),
@@ -61,7 +64,7 @@ export function toSitemapEntries(args: {
     if (guide.draft) continue;
     entries.push({
       url: absolute(siteUrl, guidePath(guide.slug)),
-      lastModified: guide.updated,
+      lastModified: guide.updated ?? contentUpdated,
       changeFrequency: "monthly",
       priority: 0.6,
     });

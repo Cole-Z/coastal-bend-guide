@@ -6,6 +6,16 @@ export function latestDate(dates: readonly string[]): string {
   return dates.reduce((max, date) => (date > max ? date : max));
 }
 
+/**
+ * "Updated November 14, 2026" when a guide has a date.
+ * Prefers `updated`. Returns null when both dates are missing.
+ */
+export function guideUpdatedLabel(guide: { date?: string; updated?: string }): string | null {
+  const stamp = guide.updated || guide.date;
+  if (!stamp) return null;
+  return `Updated ${formatDate(stamp)}`;
+}
+
 /** Format a `YYYY-MM-DD` date in UTC so the calendar day does not shift. */
 export function formatDate(isoDate: string): string {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate);
