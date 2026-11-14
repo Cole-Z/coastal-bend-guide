@@ -5,7 +5,7 @@ export const SECTIONS = [
     navLabel: "Things to do",
     summary: "Outings worth planning a day around, once each entry is checked.",
     intro:
-      "This section is for day trips and afternoon ideas in Corpus Christi and along the nearby coast. The guides below are drafts, and each one stays marked draft until its facts are checked.",
+      "This section is for day trips and afternoon ideas in Corpus Christi and along the nearby coast.",
   },
   {
     slug: "beaches",
@@ -13,7 +13,7 @@ export const SECTIONS = [
     navLabel: "Beaches",
     summary: "Gulf front, bay access, and the barrier islands — as topics, not a parking map.",
     intro:
-      "This section covers gulf-front beaches, bay access, and the barrier islands. The guides below are drafts. Parking rules and hours belong in a guide after they are checked.",
+      "This section covers gulf-front beaches, bay access, and the barrier islands. Parking rules and hours belong in a guide after they are checked.",
   },
   {
     slug: "fishing",
@@ -21,7 +21,7 @@ export const SECTIONS = [
     navLabel: "Fishing",
     summary: "Bay, surf, and offshore, with regulations left to the state.",
     intro:
-      "This section covers bay, surf, jetty, and offshore fishing in plain language. The guides below are drafts. License and limit details stay with Texas Parks & Wildlife until an editor checks the current page and links it.",
+      "This section covers bay, surf, jetty, and offshore fishing in plain language. License and limit details stay with Texas Parks & Wildlife until an editor checks the current page and links it.",
   },
   {
     slug: "family-and-kids",
@@ -29,7 +29,7 @@ export const SECTIONS = [
     navLabel: "Family",
     summary: "Outings that work with children, still being checked.",
     intro:
-      "This section is for outings that work with children. The guides below are drafts, listed here while ages, prices, and other details are still being checked.",
+      "This section is for outings that work with children.",
   },
   {
     slug: "food",
@@ -37,7 +37,7 @@ export const SECTIONS = [
     navLabel: "Food",
     summary: "Where to eat, still being checked.",
     intro:
-      "This section is where to eat around Corpus Christi. The guides below are drafts, listed here while hours, prices, and other details are still being checked.",
+      "This section is where to eat around Corpus Christi.",
   },
   {
     slug: "neighborhoods",

@@ -47,8 +47,7 @@ export function LexingtonHero() {
             Corpus Christi and the Coastal Bend.
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-pretty text-ink">
-            Beaches, fishing, food, neighborhoods, and what to know if you are moving here. The frame of
-            the guide is ready. The sample pages are drafts.
+            Beaches, fishing, food, neighborhoods, and what to know if you are moving here.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <a

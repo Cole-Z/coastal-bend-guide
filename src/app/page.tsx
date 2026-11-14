@@ -26,8 +26,7 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-4 py-16">
         <p className="max-w-3xl text-lg leading-relaxed text-ink" role="note">
           Corpus Christi sits on a bay along the Texas Gulf Coast. The Coastal Bend is that curve of coast,
-          the city included. Guides linked below are drafts. Prices, hours, and addresses in a draft still
-          need a check.
+          the city included.
         </p>
 
         <section id="sections" aria-labelledby="sections-heading" className="mt-12">
@@ -63,10 +62,10 @@ export default function HomePage() {
 
         <section id="guides" aria-labelledby="guides-heading" className="mt-16">
           <h2 id="guides-heading" className="font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Draft guides
+            Guides
           </h2>
           <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-            These pages are drafts. They stay out of the sitemap until the facts are checked.
+            Published guides are in the sitemap. Pages still marked Draft are outlines that are being checked.
           </p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2">
             {guides.map((guide) => (
