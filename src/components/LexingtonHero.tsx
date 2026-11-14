@@ -7,7 +7,7 @@ const sizes = `(min-width: ${HERO_CAP_PX}px) ${HERO_CAP_PX}px, 100vw`;
 
 export function LexingtonHero() {
   return (
-    <section className="relative isolate min-h-[34rem] overflow-hidden bg-sand text-ink sm:min-h-[40rem]">
+    <section className="relative isolate overflow-hidden bg-sand text-ink sm:min-h-[40rem]">
       <link
         rel="preload"
         as="image"
@@ -19,10 +19,10 @@ export function LexingtonHero() {
       />
       <div
         aria-hidden="true"
-        className="hero-blur absolute inset-0 bg-cover bg-[center_38%]"
+        className="hero-blur absolute inset-0 hidden bg-cover bg-[center_38%] sm:block"
         style={{ backgroundImage: "url(/images/lexington/sunrise-1024.webp)" }}
       />
-      <div className="hero-photo-frame pointer-events-none absolute inset-y-0 left-1/2 w-full max-w-[1760px] -translate-x-1/2">
+      <div className="hero-photo-frame relative aspect-[4/3] w-full sm:pointer-events-none sm:absolute sm:inset-y-0 sm:left-1/2 sm:aspect-auto sm:h-auto sm:w-full sm:max-w-[1760px] sm:-translate-x-1/2">
         <picture className="absolute inset-0">
           <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
           <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
@@ -38,9 +38,12 @@ export function LexingtonHero() {
             className="h-full w-full object-cover object-[center_38%]"
           />
         </picture>
+        <p className="absolute bottom-3 right-3 rounded-full bg-sand px-3 py-1 text-xs font-medium text-gold sm:hidden">
+          Photo: Cole Zill
+        </p>
       </div>
-      <div aria-hidden="true" className="hero-scrim pointer-events-none absolute inset-0" />
-      <div className="relative mx-auto flex min-h-[34rem] max-w-6xl flex-col justify-end px-4 py-14 sm:min-h-[40rem] sm:py-16">
+      <div aria-hidden="true" className="hero-scrim pointer-events-none absolute inset-0 hidden sm:block" />
+      <div className="relative mx-auto flex max-w-6xl flex-col px-4 py-10 sm:min-h-[40rem] sm:justify-end sm:py-16">
         <div className="max-w-xl">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-gold">A local guide</p>
           <h1 className="mt-3 font-display text-[2.65rem] font-semibold leading-[1.05] tracking-tight text-balance text-ink sm:text-6xl">
@@ -66,7 +69,7 @@ export function LexingtonHero() {
           </div>
         </div>
       </div>
-      <p className="absolute bottom-4 right-4 rounded-full bg-sand px-3 py-1 text-xs font-medium text-gold sm:bottom-5 sm:right-5">
+      <p className="absolute bottom-5 right-5 hidden rounded-full bg-sand px-3 py-1 text-xs font-medium text-gold sm:block">
         Photo: Cole Zill
       </p>
     </section>
