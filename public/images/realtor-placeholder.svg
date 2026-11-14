@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" role="img" aria-labelledby="portraitTitle portraitDesc">
+  <title id="portraitTitle">Placeholder portrait</title>
+  <desc id="portraitDesc">A stand-in silhouette. Replace this file when a real photo is approved.</desc>
+  <rect width="160" height="160" fill="#1f6f74"/>
+  <circle cx="80" cy="64" r="24" fill="#f3ecdf"/>
+  <path d="M38 148c5-32 22-50 42-50s37 18 42 50" fill="#f3ecdf"/>
+</svg>

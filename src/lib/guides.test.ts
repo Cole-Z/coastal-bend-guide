@@ -1,0 +1,69 @@
+import { describe, expect, it } from "vitest";
+import { formatDate } from "@/lib/dates";
+import { getAllGuides, parseGuide, publishedGuides } from "@/lib/guides";
+
+const RAW = `---
+title: "Hello coast"
+description: "A sample outline"
+section: beaches
+date: 2026-11-14
+updated: 2026-11-20
+draft: true
+---
+
+Draft placeholder body.
+`;
+
+describe("parseGuide", () => {
+  it("parses frontmatter, including YAML dates", () => {
+    const guide = parseGuide("hello-coast.mdx", RAW);
+    expect(guide.slug).toBe("hello-coast");
+    expect(guide.section).toBe("beaches");
+    expect(guide.date).toBe("2026-11-14");
+    expect(guide.updated).toBe("2026-11-20");
+    expect(guide.draft).toBe(true);
+    expect(guide.content).toContain("Draft placeholder");
+  });
+
+  it("rejects a guide that is missing a title or uses an unknown section", () => {
+    expect(() => parseGuide("bad.mdx", "---\nsection: beaches\n---\n")).toThrow(/invalid frontmatter/);
+    expect(() =>
+      parseGuide(
+        "bad.mdx",
+        RAW.replace("section: beaches", "section: downtown"),
+      ),
+    ).toThrow(/invalid frontmatter/);
+  });
+});
+
+describe("publishedGuides", () => {
+  it("drops drafts", () => {
+    const draft = parseGuide("hello-coast.mdx", RAW);
+    const published = parseGuide("hello-coast.mdx", RAW.replace("draft: true", "draft: false"));
+    expect(publishedGuides([draft, published]).map((guide) => guide.draft)).toEqual([false]);
+  });
+});
+
+describe("sample guides", () => {
+  it("ships four drafts and labels each one as a placeholder", () => {
+    const guides = getAllGuides();
+    expect(guides.map((guide) => guide.slug).sort()).toEqual([
+      "beaches-orientation",
+      "fishing-orientation",
+      "neighborhoods-orientation",
+      "things-to-do-orientation",
+    ]);
+    for (const guide of guides) {
+      expect(guide.draft).toBe(true);
+      expect(guide.title.toLowerCase()).toContain("draft");
+      expect(guide.content).not.toMatch(/\$\d/);
+      expect(guide.content).not.toMatch(/Draft placeholder/);
+    }
+  });
+});
+
+describe("formatDate", () => {
+  it("prints the UTC calendar day", () => {
+    expect(formatDate("2026-11-14")).toBe("November 14, 2026");
+  });
+});
