@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDate } from "@/lib/dates";
+import { formatDate, guideUpdatedLabel } from "@/lib/dates";
 import { getAllGuides, parseGuide, publishedGuides } from "@/lib/guides";
 
 const RAW = `---
@@ -45,19 +45,29 @@ describe("publishedGuides", () => {
 });
 
 describe("sample guides", () => {
-  it("ships four drafts and labels each one as a placeholder", () => {
+  it("ships the starter outlines and the first guide batch as drafts", () => {
     const guides = getAllGuides();
     expect(guides.map((guide) => guide.slug).sort()).toEqual([
       "beaches-orientation",
+      "best-local-restaurants-corpus-christi",
+      "boat-tours-fishing-charters-piers-corpus-christi",
+      "corpus-christi-nightlife",
+      "family-things-to-do-corpus-christi",
       "fishing-orientation",
       "neighborhoods-orientation",
+      "padre-island-national-seashore-day-trip",
+      "selena-corpus-christi-mirador-de-la-flor",
       "things-to-do-orientation",
+      "uss-lexington-museum-visit",
     ]);
     for (const guide of guides) {
       expect(guide.draft).toBe(true);
+      expect(guide.content).not.toMatch(/Draft placeholder/);
+    }
+    const outlines = guides.filter((guide) => guide.slug.endsWith("-orientation"));
+    for (const guide of outlines) {
       expect(guide.title.toLowerCase()).toContain("draft");
       expect(guide.content).not.toMatch(/\$\d/);
-      expect(guide.content).not.toMatch(/Draft placeholder/);
     }
   });
 });
@@ -65,5 +75,13 @@ describe("sample guides", () => {
 describe("formatDate", () => {
   it("prints the UTC calendar day", () => {
     expect(formatDate("2026-11-14")).toBe("November 14, 2026");
+  });
+});
+
+describe("guideUpdatedLabel", () => {
+  it("uses the updated date and skips a guide with no date", () => {
+    expect(guideUpdatedLabel({ date: "2026-11-01", updated: "2026-11-14" })).toBe("Updated November 14, 2026");
+    expect(guideUpdatedLabel({ date: "2026-11-14" })).toBe("Updated November 14, 2026");
+    expect(guideUpdatedLabel({})).toBeNull();
   });
 });

@@ -26,8 +26,8 @@ export default function HomePage() {
       <div className="mx-auto max-w-6xl px-4 py-16">
         <p className="max-w-3xl text-lg leading-relaxed text-ink" role="note">
           Corpus Christi sits on a bay along the Texas Gulf Coast. The Coastal Bend is that curve of coast,
-          the city included. Guides linked below are drafts: outlines for pages that are not written yet.
-          They are not reviews, and they do not list prices, hours, or addresses.
+          the city included. Guides linked below are drafts. Prices, hours, and addresses in a draft still
+          need a check.
         </p>
 
         <section id="sections" aria-labelledby="sections-heading" className="mt-12">
@@ -66,7 +66,7 @@ export default function HomePage() {
             Draft guides
           </h2>
           <p className="mt-3 max-w-2xl leading-relaxed text-muted">
-            Four sample pages, marked draft so they stay out of the sitemap until the facts are checked.
+            These pages are drafts. They stay out of the sitemap until the facts are checked.
           </p>
           <ul className="mt-6 grid gap-4 sm:grid-cols-2">
             {guides.map((guide) => (

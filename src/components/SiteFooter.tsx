@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-2xl font-semibold">{SITE_NAME}</p>
           <p className="mt-3 max-w-sm leading-relaxed text-muted">
-            Corpus Christi and the Coastal Bend. Guides marked Draft are outlines, not finished local advice.
+            Corpus Christi and the Coastal Bend. Guides marked Draft are still being checked.
           </p>
           <p className="mt-4 text-sm text-muted">No analytics and no ads in this version.</p>
         </div>
