@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Coastal Bend Guide — Corpus Christi and the Coastal Bend";
+export const alt = "CC Bay Life — Corpus Christi and the Coastal Bend";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const dynamic = "force-static";
@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 80, lineHeight: 1, fontWeight: 600 }}>
-            Coastal Bend Guide
+            CC Bay Life
           </div>
           <div style={{ display: "flex", marginTop: 28, fontSize: 32, color: "#d5e6e4", maxWidth: 820 }}>
             A local guide to the bay, the beaches, and the towns around them.

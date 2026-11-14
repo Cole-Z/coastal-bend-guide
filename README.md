@@ -1,10 +1,10 @@
-# Coastal Bend Guide
+# CC Bay Life
 
-A local guide to Corpus Christi and the Coastal Bend. The site is a Next.js static export: Markdown guides, no server, no analytics, and no ads. Sample guides are drafts.
+A local guide to Corpus Christi and the Coastal Bend, at [ccbaylife.com](https://ccbaylife.com). The site is a Next.js static export: Markdown guides, no server, no analytics, and no ads. Sample guides are drafts.
 
 ## Local development
 
-Requires Node 22 (see `.nvmrc`).
+Requires Node 22. `.nvmrc`, `.node-version`, and `package.json` `engines` all pin that major. Workers Builds reads the version files, so the build does not need a `NODE_VERSION` variable. The Workers build image defaults to Node 24 without them.
 
 ```bash
 npm install
@@ -13,7 +13,7 @@ npm run dev
 
 Open http://localhost:3000.
 
-Copy `.env.example` to `.env.local` if you want a different canonical origin while developing. The default is `https://coastal-bend-guide.pages.dev`.
+Copy `.env.example` to `.env.local` if you want a different canonical origin while developing. The default is `https://ccbaylife.com`.
 
 | Command | What it does |
 | --- | --- |
@@ -30,26 +30,40 @@ npm run build
 npx --yes serve out
 ```
 
-## Cloudflare Pages
+## Cloudflare Workers
 
-The project is set up for a git-connected Pages project, including preview deployments for pull requests.
+The site is a static export. `wrangler.jsonc` serves `out/` as Workers static assets. There is no Worker script.
 
-In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect to Git**, then choose this repository.
+Workers Builds settings for this repo:
 
 | Setting | Value |
 | --- | --- |
-| Production branch | `main` |
 | Build command | `npm run build` |
-| Build output directory | `out` |
-| Node version | `22` |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | `/` |
+| Build variables | none |
 
-Set the environment variable `NODE_VERSION` to `22`. Cloudflare Pages reads that; it does not read `.nvmrc` by itself. Root directory stays `/`.
+`NEXT_PUBLIC_SITE_URL` is optional. When it is unset, canonical URLs, the sitemap, Open Graph, and JSON-LD use `https://ccbaylife.com`. Set it only to publish a different origin.
 
-Also set `NEXT_PUBLIC_SITE_URL` to the production origin with no trailing slash, for example `https://example.com`. Sitemap URLs, canonical links, Open Graph, and JSON-LD use it. Change it when a custom domain is ready. The fallback in code is `https://coastal-bend-guide.pages.dev`.
+`output: "export"` and `trailingSlash: true` write each route as `route/index.html`. `assets.html_handling` is `auto-trailing-slash`, so `/privacy/` serves `out/privacy/index.html` and `/privacy` redirects to `/privacy/`. `assets.not_found_handling` is `404-page`, so an unknown path returns `404.html` with status 404.
 
-Preview deployments are on for git-connected Pages projects: each pull request gets its own `*.pages.dev` URL. `public/_headers` sends `X-Robots-Tag: noindex, nofollow` on `:project.pages.dev` so previews stay out of search indexes. A custom production domain does not match that rule. If production itself is only a `pages.dev` hostname, delete that block or the live site will send `noindex`.
+Check the package locally without publishing:
 
-`output: "export"` in `next.config.ts` writes the site to `out/`. There is no Node server at runtime. The realtor contact is a `mailto:` link.
+```bash
+npm run build && npx wrangler deploy --dry-run
+```
+
+### Custom domain
+
+After a deploy, attach the domain on the Worker:
+
+1. In the Cloudflare dashboard, go to **Workers & Pages** and open the `coastal-bend-guide` Worker.
+2. Open the **Domains** tab.
+3. Add `ccbaylife.com` as a custom domain.
+
+The zone for `ccbaylife.com` has to be on the same Cloudflare account. Cloudflare creates the DNS record and certificate. A custom domain on the apex does not also cover `www`. Add `www` separately if you want it.
+
+`public/_headers` is copied into `out/` and applies the security headers. It also sends `noindex` on `*.workers.dev` hostnames. `ccbaylife.com` does not match that rule. The realtor contact is still a `mailto:` link. There is no server runtime.
 
 ## Add a guide
 
@@ -78,11 +92,11 @@ Images in a guide need explicit `width` and `height` so the page does not jump w
 
 ## Realtor profile
 
-The “Moving to Corpus Christi? Work with a local realtor” block reads `src/config/realtor.ts` only. Name, photo, brokerage, email, and phone are placeholders for a Coldwell Banker agent. Replace them there, and read the TODO in that file about brokerage advertising rules and required disclosures before treating the block as an ad.
+The “Moving to Corpus Christi? Work with a local realtor” block reads `src/config/realtor.ts` only. It currently shows Kim Zill’s public Coldwell Banker profile: name, title, brokerage and office, phone, email, license number, and the short bio from that page. The portrait is a local KZ initials avatar. Her headshot is not copied or hotlinked, because the profile page does not grant reuse.
 
-The email button is `mailto:` plus the subject from that config. There is no contact form and no backend.
+The profile button opens her Coldwell Banker page in a new tab. The email button is `mailto:` plus the subject from that config. There is no contact form and no backend.
 
-While `isPlaceholder` is true, the card says the profile is not real, and the page does not emit `RealEstateAgent` JSON-LD (no fake address, price, or review).
+The file still has a TODO for brokerage advertising rules and the Texas TREC Information About Brokerage Services and Consumer Protection Notice links. Those links were not on her profile. JSON-LD for the agent omits street address, price, and reviews.
 
 ## Project layout
 
@@ -94,4 +108,4 @@ While `isPlaceholder` is true, the card says the profile is not real, and the pa
 
 ## What this version leaves out
 
-Analytics, ads, accounts, a contact form, and a real realtor profile. The privacy page says the same thing.
+Analytics, ads, accounts, and a contact form. The privacy page says the same thing.

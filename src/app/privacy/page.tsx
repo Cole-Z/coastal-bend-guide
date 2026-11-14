@@ -65,9 +65,9 @@ export default function PrivacyPage() {
             Email
           </h2>
           <p className="mt-3">
-            The “Moving to Corpus Christi” card uses a mailto link. That opens your own email app. The
-            message does not pass through this website, and the site has no inbox of its own. The address
-            in the starter config is a placeholder, not a monitored mailbox.
+            The “Moving to Corpus Christi” card uses a mailto link to the email address on Kim Zill’s
+            public Coldwell Banker profile. That opens your own email app. The message does not pass
+            through this website, and the site has no inbox of its own.
           </p>
         </section>
 
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
             Hosting
           </h2>
           <p className="mt-3">
-            When the site is deployed, the host (planned: Cloudflare Pages) may keep standard technical
+            When the site is deployed, the host (Cloudflare Workers) may keep standard technical
             logs, such as IP address, browser, and the URL requested, in order to run the service. This
             project does not add its own analytics on top of those logs.
           </p>

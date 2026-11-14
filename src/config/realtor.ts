@@ -1,22 +1,28 @@
 /**
  * The only place the public realtor profile is edited.
  *
- * Intended person: Cole's mom, a Coldwell Banker agent.
- * Every public field below is a PLACEHOLDER. Do not publish her real
- * name, photo, phone, or email in this file until she has confirmed them.
+ * Facts below are copied from Kim Zill's public Coldwell Banker profile:
+ * https://www.coldwellbanker.com/tx/corpus-christi/agents/kim-zill/aid-P00200000Fm5LJUpvQy2Hq5Q7cd2u1JDbDzMYO63
+ * That page does not grant reuse of her headshot, so `photo` stays a local initials avatar.
  *
- * TODO: Before this block is a real advertisement, confirm the
- * brokerage's advertising rules and the disclosures Texas law requires
- * on real-estate advertising. That includes the brokerage name as it
- * must appear, the agent's license, and any equal-housing / fair-housing
- * mark Coldwell Banker or the state requires. Put the approved
- * disclosure text in `disclosure` and set `isPlaceholder` to false.
- * This comment is a reminder, not legal advice.
+ * TODO: Before this block is treated as a finished advertisement, confirm
+ * the brokerage's advertising rules and add the Texas TREC links those
+ * rules require: Information About Brokerage Services, and the Consumer
+ * Protection Notice. Those links were not on her profile page. This
+ * comment is a reminder, not legal advice.
  */
 export interface RealtorProfile {
   name: string;
   brokerage: string;
   role: string;
+  /** City and state as printed with her office. */
+  officeCity: string;
+  /** Street address printed under her office. Empty hides the line. */
+  officeAddress: string;
+  /** License text as printed. Empty hides the line. */
+  license: string;
+  /** Short bio taken from the profile. Empty hides the paragraph. */
+  bio: string;
   photo: {
     src: string;
     width: number;
@@ -26,6 +32,8 @@ export interface RealtorProfile {
   email: string;
   /** Empty string hides the phone line. */
   phone: string;
+  profileUrl: string;
+  profileLinkLabel: string;
   mailtoSubject: string;
   /** Shown on the card once `isPlaceholder` is false. */
   disclosure: string;
@@ -37,18 +45,26 @@ export interface RealtorProfile {
 }
 
 export const realtor: RealtorProfile = {
-  name: "Realtor Name",
-  brokerage: "Coldwell Banker",
-  role: "Realtor",
+  name: "Kim Zill",
+  brokerage: "Coldwell Banker Pacesetter Steel",
+  role: "Real Estate Salesperson",
+  officeCity: "Corpus Christi, TX",
+  officeAddress: "5110 Holly Rd, Corpus Christi, TX 78411",
+  license: "License # 769283-SA",
+  bio: "Guiding folks home for generations....I'd love to help! Let's find your dream!",
   photo: {
     src: "/images/realtor-placeholder.svg",
     width: 160,
     height: 160,
-    alt: "Placeholder portrait. A photo of the agent has not been added.",
+    alt: "Initials avatar for Kim Zill. Her Coldwell Banker headshot is not shown here.",
   },
-  email: "realtor@example.com",
-  phone: "",
+  email: "mytexasdreamhome@gmail.com",
+  phone: "(361) 558-5577",
+  profileUrl:
+    "https://www.coldwellbanker.com/tx/corpus-christi/agents/kim-zill/aid-P00200000Fm5LJUpvQy2Hq5Q7cd2u1JDbDzMYO63",
+  profileLinkLabel: "View Kim's listings & profile",
   mailtoSubject: "Moving to Corpus Christi",
-  disclosure: "",
-  isPlaceholder: true,
+  disclosure:
+    "Kim Zill is a real estate agent affiliated with Coldwell Banker Pacesetter Steel in Corpus Christi, TX.",
+  isPlaceholder: false,
 };
