@@ -57,6 +57,59 @@ body {
   scroll-margin-top: 5rem;
 }
 
+/* Dimmed, out-of-focus copy that fills the hero past the sharp photo. */
+.hero-blur {
+  transform: scale(1.14);
+  filter: blur(48px) brightness(0.86);
+}
+
+/* Dissolve the sharp photo into that blur once the frame is capped. */
+@media (min-width: 1760px) {
+  .hero-photo-frame {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 72px,
+      #000 calc(100% - 72px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      #000 72px,
+      #000 calc(100% - 72px),
+      transparent 100%
+    );
+  }
+}
+
+/* Soft sand wash behind the headline. Opaque where the type sits, then gone. */
+.hero-scrim {
+  background: linear-gradient(
+    to top,
+    rgb(246 241 230 / 0.97) 0%,
+    rgb(246 241 230 / 0.96) 72%,
+    rgb(246 241 230 / 0.95) 84%,
+    rgb(246 241 230 / 0.93) 92%,
+    rgb(246 241 230 / 0.45) 97%,
+    transparent 100%
+  );
+}
+
+@media (min-width: 640px) {
+  .hero-scrim {
+    background: radial-gradient(
+      85% 72% at 18% 64%,
+      rgb(246 241 230 / 0.97) 0%,
+      rgb(246 241 230 / 0.95) 30%,
+      rgb(246 241 230 / 0.86) 44%,
+      rgb(246 241 230 / 0.48) 60%,
+      rgb(246 241 230 / 0.12) 74%,
+      transparent 88%
+    );
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
