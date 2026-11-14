@@ -76,18 +76,18 @@ export default async function TopicPage({ params }: TopicPageProps) {
       />
       <JsonLd data={topicPageJsonLd({ name: section.title, description: section.intro, url })} />
       <nav aria-label="Breadcrumb" className="text-sm text-muted">
-        <Link href="/" className="font-semibold text-tide underline underline-offset-4">
+        <Link href="/" className="font-semibold text-ocean underline underline-offset-4">
           Home
         </Link>
         <span aria-hidden="true"> / </span>
         <span aria-current="page">{section.title}</span>
       </nav>
-      <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-gulf sm:text-5xl">
+      <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
         {section.title}
       </h1>
       <p className="mt-4 text-lg leading-relaxed">{section.intro}</p>
       <section aria-labelledby="topic-guides" className="mt-10">
-        <h2 id="topic-guides" className="font-display text-2xl font-semibold text-gulf">
+        <h2 id="topic-guides" className="font-display text-2xl font-semibold text-ink">
           Guides
         </h2>
         <div className="mt-4">

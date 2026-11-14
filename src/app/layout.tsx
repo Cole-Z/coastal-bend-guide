@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { WaveDivider } from "@/components/CoastArt";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -19,7 +18,7 @@ const fraunces = Fraunces({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#12343c",
+  themeColor: "#f6f1e6",
   colorScheme: "light",
 };
 
@@ -52,7 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>
-        <WaveDivider from="sand" to="gulf" />
         <SiteFooter />
       </body>
     </html>

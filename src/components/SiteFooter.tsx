@@ -4,18 +4,18 @@ import { SITE_NAME } from "@/lib/site";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-gulf text-sand">
+    <footer className="border-t border-line bg-foam text-ink">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2">
         <div>
           <p className="font-display text-2xl font-semibold">{SITE_NAME}</p>
-          <p className="mt-3 max-w-sm leading-relaxed text-sea">
+          <p className="mt-3 max-w-sm leading-relaxed text-muted">
             Corpus Christi and the Coastal Bend. Guides marked Draft are outlines, not finished local advice.
           </p>
-          <p className="mt-4 text-sm text-sea">No analytics and no ads in this version.</p>
+          <p className="mt-4 text-sm text-muted">No analytics and no ads in this version.</p>
         </div>
         <div className="grid grid-cols-2 gap-6">
           <nav aria-label="Footer sections">
-            <p className="text-sm font-semibold uppercase tracking-wide text-sea">Sections</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-ocean">Sections</p>
             <ul className="mt-3 space-y-2">
               {SECTIONS.map((section) => (
                 <li key={section.slug}>
@@ -27,7 +27,7 @@ export function SiteFooter() {
             </ul>
           </nav>
           <nav aria-label="About the site">
-            <p className="text-sm font-semibold uppercase tracking-wide text-sea">Site</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-ocean">Site</p>
             <ul className="mt-3 space-y-2">
               <li>
                 <Link href="/" className="underline-offset-4 hover:underline">

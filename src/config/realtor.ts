@@ -3,7 +3,8 @@
  *
  * Facts below are copied from Kim Zill's public Coldwell Banker profile:
  * https://www.coldwellbanker.com/tx/corpus-christi/agents/kim-zill/aid-P00200000Fm5LJUpvQy2Hq5Q7cd2u1JDbDzMYO63
- * That page does not grant reuse of her headshot, so `photo` stays a local initials avatar.
+ * The portrait is a local copy of the headshot on that page. Kim Zill gave
+ * permission to use it. `width` and `height` are the 160px layout box.
  *
  * TODO: Before this block is treated as a finished advertisement, confirm
  * the brokerage's advertising rules and add the Texas TREC links those
@@ -53,10 +54,10 @@ export const realtor: RealtorProfile = {
   license: "License # 769283-SA",
   bio: "Guiding folks home for generations....I'd love to help! Let's find your dream!",
   photo: {
-    src: "/images/realtor-placeholder.svg",
+    src: "/images/kim-zill.webp",
     width: 160,
     height: 160,
-    alt: "Initials avatar for Kim Zill. Her Coldwell Banker headshot is not shown here.",
+    alt: "Portrait of Kim Zill, a real estate salesperson with Coldwell Banker Pacesetter Steel in Corpus Christi.",
   },
   email: "mytexasdreamhome@gmail.com",
   phone: "(361) 558-5577",

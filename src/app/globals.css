@@ -1,15 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-sand: #f3ecdf;
-  --color-foam: #fffaf3;
-  --color-ink: #1a2a30;
-  --color-muted: #3e5158;
-  --color-gulf: #12343c;
-  --color-tide: #14555c;
-  --color-sea: #d5e6e4;
-  --color-sunset: #8c3f22;
-  --color-line: #e4d5c0;
+  --color-sand: #f6f1e6;
+  --color-foam: #fffdf8;
+  --color-ink: #1a2c34;
+  --color-muted: #3e5560;
+  --color-ocean: #0c5c78;
+  --color-ocean-ink: #f7f4ee;
+  --color-gold: #8a5a10;
+  --color-line: #e3d6c2;
   --font-sans: var(--font-source), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
@@ -20,18 +19,18 @@ html {
 }
 
 body {
-  background: #f3ecdf;
-  color: #1a2a30;
+  background: #f6f1e6;
+  color: #1a2c34;
 }
 
 :focus-visible {
-  outline: 3px solid #8c3f22;
+  outline: 3px solid #0c5c78;
   outline-offset: 3px;
 }
 
 ::selection {
-  background: #1f6f74;
-  color: #fffaf3;
+  background: #0c5c78;
+  color: #f7f4ee;
 }
 
 .skip-link {
@@ -41,8 +40,8 @@ body {
   z-index: 50;
   transform: translateY(-120%);
   border-radius: 999px;
-  background: #fffaf3;
-  color: #12343c;
+  background: #0c5c78;
+  color: #f7f4ee;
   padding: 0.5rem 1rem;
   font-weight: 600;
 }
