@@ -29,6 +29,41 @@ function canonicalGuideUrl(siteUrl: string, slug: string): string {
   return `${siteUrl}${guidePath(slug)}`;
 }
 
+/** Double-quoted YAML scalar. Colons, apostrophes, and quotes stay inside the quotes. */
+function yamlDoubleQuoted(value: string): string {
+  const escaped = value.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/[\0-\u001F]/g, (char) => {
+    if (char === "\n") return "\\n";
+    if (char === "\r") return "\\r";
+    if (char === "\t") return "\\t";
+    return `\\u${char.charCodeAt(0).toString(16).padStart(4, "0")}`;
+  });
+  return `"${escaped}"`;
+}
+
+function guideStamp(guide: Guide): string | undefined {
+  return guide.updated || guide.date;
+}
+
+function guideMarkdownFrontMatter(guide: Guide, site: GuideMarkdownSite): string {
+  const lines = [
+    "---",
+    `title: ${yamlDoubleQuoted(guide.title)}`,
+    `source: ${yamlDoubleQuoted(site.siteName)}`,
+    `canonical_url: ${yamlDoubleQuoted(canonicalGuideUrl(site.siteUrl, guide.slug))}`,
+  ];
+  const stamp = guideStamp(guide);
+  if (stamp) {
+    lines.push(`last_updated: ${yamlDoubleQuoted(stamp)}`);
+  }
+  lines.push(
+    `content_type: ${yamlDoubleQuoted("local-guide")}`,
+    `location: ${yamlDoubleQuoted("Corpus Christi, Texas")}`,
+    "---",
+    "",
+  );
+  return lines.join("\n");
+}
+
 function contactLines(contact: GuideMarkdownContact): string[] {
   const lines = [
     `${contact.name}, ${contact.role}`,
@@ -44,14 +79,14 @@ function contactLines(contact: GuideMarkdownContact): string[] {
   return lines.filter((line) => line.trim().length > 0);
 }
 
-/** Plain Markdown for one guide: title, date, canonical URL, body, and the site contact footer. */
+/** Plain Markdown for one guide: YAML front matter, title, date, canonical URL, body, and the site contact footer. */
 export function renderGuideMarkdown(
   guide: Guide,
   site: GuideMarkdownSite,
   contact: GuideMarkdownContact,
 ): string {
   const dateLabel = guideUpdatedLabel(guide);
-  const parts = [`# ${guide.title}`, ""];
+  const parts = [guideMarkdownFrontMatter(guide, site), `# ${guide.title}`, ""];
   if (dateLabel) {
     parts.push(dateLabel, "");
   }
