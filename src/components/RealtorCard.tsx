@@ -57,6 +57,9 @@ export function RealtorCard({
           <p className="text-sm font-semibold uppercase tracking-wide text-tide">{realtor.brokerage}</p>
           <p className="mt-1 font-display text-3xl font-semibold text-gulf">{realtor.name}</p>
           <p className="mt-1 text-muted">{realtor.role}</p>
+          {realtor.officeCity ? <p className="mt-1 text-muted">{realtor.officeCity}</p> : null}
+          {realtor.officeAddress ? <p className="text-muted">{realtor.officeAddress}</p> : null}
+          {realtor.bio ? <p className="mt-4 leading-relaxed text-ink">{realtor.bio}</p> : null}
           {realtor.isPlaceholder ? (
             <p className="mt-4 leading-relaxed text-ink">
               Placeholder only. This name, photo, and email are not a real profile and this block is not an
@@ -68,10 +71,20 @@ export function RealtorCard({
                 "Add the brokerage’s required advertising disclosures in the realtor config before treating this as an ad."}
             </p>
           )}
+          {realtor.license ? <p className="mt-2 text-sm text-muted">{realtor.license}</p> : null}
           <div className="mt-5 flex flex-col items-start gap-3">
             <a
-              href={realtorMailto(realtor)}
+              href={realtor.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex rounded-full bg-sunset px-5 py-2.5 font-semibold text-white"
+            >
+              {realtor.profileLinkLabel}
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <a
+              href={realtorMailto(realtor)}
+              className="inline-flex rounded-full border border-gulf px-5 py-2.5 font-semibold text-gulf"
             >
               Email about moving
             </a>

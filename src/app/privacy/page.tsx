@@ -65,9 +65,9 @@ export default function PrivacyPage() {
             Email
           </h2>
           <p className="mt-3">
-            The “Moving to Corpus Christi” card uses a mailto link. That opens your own email app. The
-            message does not pass through this website, and the site has no inbox of its own. The address
-            in the starter config is a placeholder, not a monitored mailbox.
+            The “Moving to Corpus Christi” card uses a mailto link to the email address on Kim Zill’s
+            public Coldwell Banker profile. That opens your own email app. The message does not pass
+            through this website, and the site has no inbox of its own.
           </p>
         </section>
 

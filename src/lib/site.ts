@@ -1,4 +1,4 @@
-export const SITE_NAME = "Coastal Bend Guide";
+export const SITE_NAME = "CC Bay Life";
 
 export const SITE_DESCRIPTION =
   "A local guide to Corpus Christi and the Coastal Bend: beaches, fishing, food, neighborhoods, and moving here.";
@@ -11,6 +11,4 @@ export const SITE_DESCRIPTION =
 export const SITE_CONTENT_UPDATED = "2026-11-14";
 
 /** Canonical origin. No trailing slash. Override with NEXT_PUBLIC_SITE_URL. */
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://coastal-bend-guide.pages.dev"
-).replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://ccbaylife.com").replace(/\/$/, "");

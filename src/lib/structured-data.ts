@@ -69,7 +69,7 @@ export function realtorAgentJsonLd(profile: RealtorProfile, pageUrl: string) {
     "@type": "RealEstateAgent",
     name: profile.name,
     description: profile.disclosure || `${profile.role} at ${profile.brokerage}`,
-    url: pageUrl,
+    url: profile.profileUrl || pageUrl,
     ...(profile.email ? { email: profile.email } : {}),
     ...(profile.phone ? { telephone: profile.phone } : {}),
   };

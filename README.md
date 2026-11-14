@@ -1,6 +1,6 @@
-# Coastal Bend Guide
+# CC Bay Life
 
-A local guide to Corpus Christi and the Coastal Bend. The site is a Next.js static export: Markdown guides, no server, no analytics, and no ads. Sample guides are drafts.
+A local guide to Corpus Christi and the Coastal Bend, at [ccbaylife.com](https://ccbaylife.com). The site is a Next.js static export: Markdown guides, no server, no analytics, and no ads. Sample guides are drafts.
 
 ## Local development
 
@@ -13,7 +13,7 @@ npm run dev
 
 Open http://localhost:3000.
 
-Copy `.env.example` to `.env.local` if you want a different canonical origin while developing. The default is `https://coastal-bend-guide.pages.dev`.
+Copy `.env.example` to `.env.local` if you want a different canonical origin while developing. The default is `https://ccbaylife.com`.
 
 | Command | What it does |
 | --- | --- |
@@ -45,7 +45,7 @@ In the Cloudflare dashboard: **Workers & Pages → Create → Pages → Connect 
 
 Set the environment variable `NODE_VERSION` to `22`. Cloudflare Pages reads that; it does not read `.nvmrc` by itself. Root directory stays `/`.
 
-Also set `NEXT_PUBLIC_SITE_URL` to the production origin with no trailing slash, for example `https://example.com`. Sitemap URLs, canonical links, Open Graph, and JSON-LD use it. Change it when a custom domain is ready. The fallback in code is `https://coastal-bend-guide.pages.dev`.
+Also set `NEXT_PUBLIC_SITE_URL` to the production origin with no trailing slash. Sitemap URLs, canonical links, Open Graph, and JSON-LD use it. The site domain is `https://ccbaylife.com`, which is also the fallback in code.
 
 Preview deployments are on for git-connected Pages projects: each pull request gets its own `*.pages.dev` URL. `public/_headers` sends `X-Robots-Tag: noindex, nofollow` on `:project.pages.dev` so previews stay out of search indexes. A custom production domain does not match that rule. If production itself is only a `pages.dev` hostname, delete that block or the live site will send `noindex`.
 
@@ -78,11 +78,11 @@ Images in a guide need explicit `width` and `height` so the page does not jump w
 
 ## Realtor profile
 
-The “Moving to Corpus Christi? Work with a local realtor” block reads `src/config/realtor.ts` only. Name, photo, brokerage, email, and phone are placeholders for a Coldwell Banker agent. Replace them there, and read the TODO in that file about brokerage advertising rules and required disclosures before treating the block as an ad.
+The “Moving to Corpus Christi? Work with a local realtor” block reads `src/config/realtor.ts` only. It currently shows Kim Zill’s public Coldwell Banker profile: name, title, brokerage and office, phone, email, license number, and the short bio from that page. The portrait is a local KZ initials avatar. Her headshot is not copied or hotlinked, because the profile page does not grant reuse.
 
-The email button is `mailto:` plus the subject from that config. There is no contact form and no backend.
+The profile button opens her Coldwell Banker page in a new tab. The email button is `mailto:` plus the subject from that config. There is no contact form and no backend.
 
-While `isPlaceholder` is true, the card says the profile is not real, and the page does not emit `RealEstateAgent` JSON-LD (no fake address, price, or review).
+The file still has a TODO for brokerage advertising rules and the Texas TREC Information About Brokerage Services and Consumer Protection Notice links. Those links were not on her profile. JSON-LD for the agent omits street address, price, and reviews.
 
 ## Project layout
 
