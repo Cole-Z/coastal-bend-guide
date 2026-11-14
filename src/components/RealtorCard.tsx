@@ -12,15 +12,15 @@ function CardHeading({ variant, headingId }: { variant: RealtorCardVariant; head
     case "feature":
       return (
         <div>
-          <h2 id={headingId} className="font-display text-4xl font-semibold tracking-tight text-gulf sm:text-5xl">
+          <h2 id={headingId} className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
             Moving to Corpus Christi?
           </h2>
-          <p className="mt-2 font-display text-2xl text-tide">Work with a local realtor</p>
+          <p className="mt-2 font-display text-2xl text-gold">Work with a local realtor</p>
         </div>
       );
     case "embedded":
       return (
-        <h2 id={headingId} className="font-display text-3xl font-semibold tracking-tight text-gulf">
+        <h2 id={headingId} className="font-display text-3xl font-semibold tracking-tight text-ink">
           Work with a local realtor
         </h2>
       );
@@ -51,11 +51,12 @@ export function RealtorCard({
           alt={realtor.photo.alt}
           width={realtor.photo.width}
           height={realtor.photo.height}
-          className="h-40 w-40 rounded-full bg-sand object-cover"
+          loading="lazy"
+          className="h-40 w-40 rounded-full bg-night object-cover"
         />
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-tide">{realtor.brokerage}</p>
-          <p className="mt-1 font-display text-3xl font-semibold text-gulf">{realtor.name}</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-gold">{realtor.brokerage}</p>
+          <p className="mt-1 font-display text-3xl font-semibold text-ink">{realtor.name}</p>
           <p className="mt-1 text-muted">{realtor.role}</p>
           {realtor.officeCity ? <p className="mt-1 text-muted">{realtor.officeCity}</p> : null}
           {realtor.officeAddress ? <p className="text-muted">{realtor.officeAddress}</p> : null}
@@ -77,14 +78,14 @@ export function RealtorCard({
               href={realtor.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-full bg-sunset px-5 py-2.5 font-semibold text-white"
+              className="inline-flex rounded-full bg-gold px-5 py-2.5 font-semibold text-gold-ink"
             >
               {realtor.profileLinkLabel}
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
             <a
               href={realtorMailto(realtor)}
-              className="inline-flex rounded-full border border-gulf px-5 py-2.5 font-semibold text-gulf"
+              className="inline-flex rounded-full border border-gold px-5 py-2.5 font-semibold text-gold"
             >
               Email about moving
             </a>
@@ -96,7 +97,7 @@ export function RealtorCard({
               <p className="text-sm text-muted">{realtor.email}</p>
             )}
             {realtor.phone ? (
-              <a href={realtorTel(realtor.phone)} className="font-semibold text-tide underline underline-offset-2">
+              <a href={realtorTel(realtor.phone)} className="font-semibold text-gold underline underline-offset-2">
                 {realtor.phone}
               </a>
             ) : null}

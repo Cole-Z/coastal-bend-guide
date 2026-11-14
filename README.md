@@ -1,6 +1,6 @@
 # CC Bay Life
 
-A local guide to Corpus Christi and the Coastal Bend, at [ccbaylife.com](https://ccbaylife.com). The site is a Next.js static export: Markdown guides, no server, no analytics, and no ads. Sample guides are drafts.
+A local guide to Corpus Christi and the Coastal Bend, at [ccbaylife.com](https://ccbaylife.com). The site is a Next.js static export: Markdown guides, no server, no analytics, and no ads. Sample guides are drafts. The homepage hero is Cole Zill’s photo of the USS Lexington at sunrise, served as responsive WebP and AVIF from `public/images/lexington/`.
 
 ## Local development
 

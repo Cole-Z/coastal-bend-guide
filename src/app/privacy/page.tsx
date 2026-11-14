@@ -30,18 +30,18 @@ export default function PrivacyPage() {
         ])}
       />
       <nav aria-label="Breadcrumb" className="text-sm text-muted">
-        <Link href="/" className="font-semibold text-tide underline underline-offset-4">
+        <Link href="/" className="font-semibold text-gold underline underline-offset-4">
           Home
         </Link>
         <span aria-hidden="true"> / </span>
         <span aria-current="page">Privacy</span>
       </nav>
-      <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-gulf sm:text-5xl">Privacy</h1>
+      <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Privacy</h1>
       <p className="mt-3 text-muted">Last updated {formatDate(SITE_CONTENT_UPDATED)}.</p>
 
       <div className="mt-8 space-y-8 text-lg leading-relaxed">
         <section aria-labelledby="privacy-what">
-          <h2 id="privacy-what" className="font-display text-2xl font-semibold text-gulf">
+          <h2 id="privacy-what" className="font-display text-2xl font-semibold text-ink">
             What this site is
           </h2>
           <p className="mt-3">
@@ -51,7 +51,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="privacy-tracking">
-          <h2 id="privacy-tracking" className="font-display text-2xl font-semibold text-gulf">
+          <h2 id="privacy-tracking" className="font-display text-2xl font-semibold text-ink">
             Analytics and advertising
           </h2>
           <p className="mt-3">
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="privacy-email">
-          <h2 id="privacy-email" className="font-display text-2xl font-semibold text-gulf">
+          <h2 id="privacy-email" className="font-display text-2xl font-semibold text-ink">
             Email
           </h2>
           <p className="mt-3">
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="privacy-drafts">
-          <h2 id="privacy-drafts" className="font-display text-2xl font-semibold text-gulf">
+          <h2 id="privacy-drafts" className="font-display text-2xl font-semibold text-ink">
             Draft guides
           </h2>
           <p className="mt-3">
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
         </section>
 
         <section aria-labelledby="privacy-host">
-          <h2 id="privacy-host" className="font-display text-2xl font-semibold text-gulf">
+          <h2 id="privacy-host" className="font-display text-2xl font-semibold text-ink">
             Hosting
           </h2>
           <p className="mt-3">

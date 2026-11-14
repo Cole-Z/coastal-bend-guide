@@ -15,8 +15,8 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#12343c",
-          color: "#f3ecdf",
+          backgroundColor: "#070b12",
+          color: "#f6f1e7",
           padding: "72px",
         }}
       >
@@ -26,7 +26,7 @@ export default function OpenGraphImage() {
             fontSize: 28,
             letterSpacing: 4,
             textTransform: "uppercase",
-            color: "#b7d4d1",
+            color: "#e8b15a",
           }}
         >
           Corpus Christi · Texas
@@ -35,7 +35,7 @@ export default function OpenGraphImage() {
           <div style={{ display: "flex", fontSize: 80, lineHeight: 1, fontWeight: 600 }}>
             CC Bay Life
           </div>
-          <div style={{ display: "flex", marginTop: 28, fontSize: 32, color: "#d5e6e4", maxWidth: 820 }}>
+          <div style={{ display: "flex", marginTop: 28, fontSize: 32, color: "#d4cdc0", maxWidth: 820 }}>
             A local guide to the bay, the beaches, and the towns around them.
           </div>
         </div>

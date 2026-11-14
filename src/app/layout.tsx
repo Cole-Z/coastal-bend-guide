@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { WaveDivider } from "@/components/CoastArt";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -19,8 +18,8 @@ const fraunces = Fraunces({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#12343c",
-  colorScheme: "light",
+  themeColor: "#070b12",
+  colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${sourceSans.variable} ${fraunces.variable}`}>
-      <body className="flex min-h-screen flex-col bg-sand font-sans text-ink antialiased">
+      <body className="flex min-h-screen flex-col bg-bay font-sans text-ink antialiased">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
@@ -52,7 +51,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main id="main" tabIndex={-1} className="flex-1 outline-none">
           {children}
         </main>
-        <WaveDivider from="sand" to="gulf" />
         <SiteFooter />
       </body>
     </html>
