@@ -1,7 +1,9 @@
+import matter from "gray-matter";
 import { describe, expect, it } from "vitest";
 import { realtor } from "@/config/realtor";
 import { guideExportFiles, renderGuideMarkdown, renderLlmsTxt } from "@/lib/guide-markdown";
-import type { Guide } from "@/lib/guides";
+import { getAllGuides, type Guide } from "@/lib/guides";
+import { guidePath } from "@/lib/sections";
 
 const site = {
   siteUrl: "https://ccbaylife.com",
@@ -49,7 +51,40 @@ describe("renderGuideMarkdown", () => {
       realtor,
     );
     expect(markdown).not.toContain("Updated ");
+    expect(markdown).not.toContain("last_updated:");
     expect(markdown).toContain("Draft: this page is still being checked.");
+  });
+
+  it("quotes titles that contain colons, quotes, and backslashes", () => {
+    const markdown = renderGuideMarkdown(
+      sampleGuide({ title: 'A "local" guide: bay \\ bridge' }),
+      site,
+      realtor,
+    );
+    const parsed = matter(markdown);
+    expect(parsed.data.title).toBe('A "local" guide: bay \\ bridge');
+    expect(markdown.startsWith("---\n")).toBe(true);
+  });
+
+  it("parses front matter that matches every guide", () => {
+    const guides = getAllGuides();
+    expect(guides.length).toBeGreaterThan(0);
+    for (const guide of guides) {
+      const markdown = renderGuideMarkdown(guide, site, realtor);
+      const parsed = matter(markdown);
+      expect(parsed.data).toEqual({
+        title: guide.title,
+        source: "CC Bay Life",
+        canonical_url: `${site.siteUrl}${guidePath(guide.slug)}`,
+        last_updated: guide.updated || guide.date,
+        content_type: "local-guide",
+        location: "Corpus Christi, Texas",
+      });
+      expect(parsed.content).toContain(`# ${guide.title}`);
+      expect(parsed.content).toContain(guide.content.trim());
+      expect(parsed.content).toContain("Kim Zill, Real Estate Salesperson");
+      expect(markdown.endsWith("\n")).toBe(true);
+    }
   });
 });
 
