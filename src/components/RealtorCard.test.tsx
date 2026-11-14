@@ -19,8 +19,9 @@ describe("realtor profile", () => {
     expect(realtor.phone).toBe("(361) 558-5577");
     expect(realtor.license).toBe("License # 769283-SA");
     expect(realtor.profileUrl).toBe(PROFILE_URL);
-    expect(realtor.photo.src.startsWith("/")).toBe(true);
-    expect(realtor.photo.src).not.toContain("realogyprod.com");
+    expect(realtor.photo.src).toBe("/images/kim-zill.webp");
+    expect(realtor.photo.alt).toContain("Kim Zill");
+    expect(realtor.photo.alt.toLowerCase()).not.toContain("initials");
     expect(realtor.photo.width).toBe(160);
     expect(realtor.photo.height).toBe(160);
     expect(realtor.disclosure).toContain("Coldwell Banker Pacesetter Steel");
@@ -67,6 +68,8 @@ describe("RealtorCard", () => {
     expect(html).toContain("mailto:mytexasdreamhome@gmail.com?subject=Moving%20to%20Corpus%20Christi");
     expect(html).toContain('width="160"');
     expect(html).toContain('height="160"');
+    expect(html).toContain("/images/kim-zill.webp");
+    expect(html).toContain("Portrait of Kim Zill");
     expect(html).not.toContain("realogyprod.com");
     expect(html).not.toContain("not a real profile");
   });

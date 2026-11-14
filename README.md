@@ -92,7 +92,7 @@ Images in a guide need explicit `width` and `height` so the page does not jump w
 
 ## Realtor profile
 
-The “Moving to Corpus Christi? Work with a local realtor” block reads `src/config/realtor.ts` only. It currently shows Kim Zill’s public Coldwell Banker profile: name, title, brokerage and office, phone, email, license number, and the short bio from that page. The portrait is a local KZ initials avatar. Her headshot is not copied or hotlinked, because the profile page does not grant reuse.
+The “Moving to Corpus Christi? Work with a local realtor” block reads `src/config/realtor.ts` only. It currently shows Kim Zill’s public Coldwell Banker profile: name, title, brokerage and office, phone, email, license number, and the short bio from that page. The portrait is a local copy of her headshot, saved at `public/images/kim-zill.webp`. She gave permission to use it. It is not hotlinked.
 
 The profile button opens her Coldwell Banker page in a new tab. The email button is `mailto:` plus the subject from that config. There is no contact form and no backend.
 

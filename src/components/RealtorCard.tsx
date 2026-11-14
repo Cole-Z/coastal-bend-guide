@@ -44,14 +44,14 @@ export function RealtorCard({
       <JsonLd data={realtorAgentJsonLd(realtor, pageUrl)} />
       <CardHeading variant={variant} headingId={headingId} />
       <div className="mt-6 grid gap-6 sm:grid-cols-[160px_minmax(0,1fr)] sm:items-center">
-        {/* Fixed 160×160 box. The SVG is the placeholder until a real photo is approved. */}
+        {/* Fixed 160×160 box. The file is 480×480 so the circle stays sharp. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={realtor.photo.src}
           alt={realtor.photo.alt}
           width={realtor.photo.width}
           height={realtor.photo.height}
-          className="h-40 w-40 rounded-full bg-tide"
+          className="h-40 w-40 rounded-full bg-sand object-cover"
         />
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-tide">{realtor.brokerage}</p>
