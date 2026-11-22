@@ -1,12 +1,14 @@
 import { latestDate } from "@/lib/dates";
+import { eventsSnapshot } from "@/lib/events";
 import { getAllGuides } from "@/lib/guides";
 import { guidePath, SECTIONS, topicPath, type SectionSlug } from "@/lib/sections";
-import { SITE_CONTENT_UPDATED, SITE_URL } from "@/lib/site";
+import { PRIVACY_UPDATED, SITE_CONTENT_UPDATED, SITE_URL } from "@/lib/site";
 
 export interface SitemapGuide {
   slug: string;
   section: SectionSlug;
   updated?: string;
+  date?: string;
   draft: boolean;
 }
 
@@ -21,19 +23,17 @@ function absolute(siteUrl: string, path: string): string {
   return `${siteUrl}${path}`;
 }
 
-/**
- * Sitemap rows for the static export.
- * Draft guides are omitted. Their dates still move the homepage and
- * the topic page that links to them, because that copy did change.
- * lastmod is always a content date, never the build clock.
- */
+/** Lastmod uses editorial dates. Guide cards on public pages link only to published content. */
 export function toSitemapEntries(args: {
   siteUrl: string;
   contentUpdated: string;
   guides: readonly SitemapGuide[];
+  privacyUpdated: string;
+  eventsUpdated: string;
 }): SitemapEntry[] {
-  const { siteUrl, contentUpdated, guides } = args;
-  const dated = guides.flatMap((guide) => (guide.updated ? [guide.updated] : []));
+  const { siteUrl, contentUpdated, privacyUpdated, eventsUpdated } = args;
+  const guides = args.guides.filter((guide) => !guide.draft);
+  const dated = guides.flatMap((guide) => guide.updated ?? guide.date ?? []);
   const homeLastModified = latestDate([contentUpdated, ...dated]);
 
   const entries: SitemapEntry[] = [
@@ -49,7 +49,7 @@ export function toSitemapEntries(args: {
     const sectionDates = [
       contentUpdated,
       ...guides.flatMap((guide) =>
-        guide.section === section.slug && guide.updated ? [guide.updated] : [],
+        guide.section === section.slug ? guide.updated ?? guide.date ?? [] : [],
       ),
     ];
     entries.push({
@@ -61,10 +61,9 @@ export function toSitemapEntries(args: {
   }
 
   for (const guide of guides) {
-    if (guide.draft) continue;
     entries.push({
       url: absolute(siteUrl, guidePath(guide.slug)),
-      lastModified: guide.updated ?? contentUpdated,
+      lastModified: guide.updated ?? guide.date ?? contentUpdated,
       changeFrequency: "monthly",
       priority: 0.6,
     });
@@ -72,9 +71,16 @@ export function toSitemapEntries(args: {
 
   entries.push({
     url: absolute(siteUrl, "/privacy/"),
-    lastModified: contentUpdated,
+    lastModified: privacyUpdated,
     changeFrequency: "monthly",
     priority: 0.3,
+  });
+
+  entries.push({
+    url: absolute(siteUrl, "/events/"),
+    lastModified: eventsUpdated,
+    changeFrequency: "monthly",
+    priority: 0.7,
   });
 
   return entries;
@@ -84,6 +90,8 @@ export function getSitemapEntries(): SitemapEntry[] {
   return toSitemapEntries({
     siteUrl: SITE_URL,
     contentUpdated: SITE_CONTENT_UPDATED,
+    privacyUpdated: PRIVACY_UPDATED,
+    eventsUpdated: eventsSnapshot.updated,
     guides: getAllGuides(),
   });
 }

@@ -1,14 +1,14 @@
 export const SITE_NAME = "CC Bay Life";
 
 export const SITE_DESCRIPTION =
-  "A local guide to Corpus Christi and the Coastal Bend: beaches, fishing, food, neighborhoods, and moving here.";
+  "Plan a Corpus Christi weekend, pick a beach or restaurant, find local events, or compare neighborhoods before a move.";
 
 /**
- * Floor for sitemap lastmod on pages that are not a single guide.
- * Bump this when static copy (home, privacy, section intros) changes.
- * Guide pages use their own frontmatter `updated` date.
+ * Sitemap lastmod for shared homepage and topic copy.
  */
-export const SITE_CONTENT_UPDATED = "2026-11-14";
+export const SITE_CONTENT_UPDATED = "2026-11-22";
+export const PRIVACY_UPDATED = "2026-11-14";
 
 /** Canonical origin. No trailing slash. Override with NEXT_PUBLIC_SITE_URL. */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://ccbaylife.com").replace(/\/$/, "");
+export const PRODUCTION_SITE_URL = "https://ccbaylife.com";
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_SITE_URL).replace(/\/$/, "");

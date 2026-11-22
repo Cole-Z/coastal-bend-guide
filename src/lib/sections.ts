@@ -2,58 +2,65 @@ export const SECTIONS = [
   {
     slug: "things-to-do",
     title: "Things to Do",
+    searchTitle: "Things to Do in Corpus Christi",
     navLabel: "Things to do",
-    summary: "Outings worth planning a day around, once each entry is checked.",
+    summary: "Plan a day around North Beach, the downtown bayfront, or a Gulf beach.",
     intro:
-      "This section is for day trips and afternoon ideas in Corpus Christi and along the nearby coast.",
+      "Start with a North Beach attraction and a downtown bayfront stop. Add a Gulf beach day if you have a full weekend.",
   },
   {
     slug: "beaches",
     title: "Beaches",
+    searchTitle: "Corpus Christi Beaches and Gulf Day Trips",
     navLabel: "Beaches",
-    summary: "Gulf front, bay access, and the barrier islands — as topics, not a parking map.",
+    summary: "Find the right stretch of sand on the bay or the Gulf.",
     intro:
-      "This section covers gulf-front beaches, bay access, and the barrier islands. Parking rules and hours belong in a guide after they are checked.",
+      "North Beach and McGee Beach face Corpus Christi Bay. For Gulf surf, cross the JFK Causeway and pick a city beach, a state park, or the national seashore.",
   },
   {
     slug: "fishing",
     title: "Fishing",
+    searchTitle: "Corpus Christi Fishing, Piers, and Charters",
     navLabel: "Fishing",
-    summary: "Bay, surf, and offshore, with regulations left to the state.",
+    summary: "Find a fishing pier, book a bay trip, or compare offshore charters.",
     intro:
-      "This section covers bay, surf, jetty, and offshore fishing in plain language. License and limit details stay with Texas Parks & Wildlife until an editor checks the current page and links it.",
+      "Decide whether you want to fish from shore, book a bay guide, or head offshore. Start with the guide below for launch points, piers, and state fishing rules.",
   },
   {
     slug: "family-and-kids",
     title: "Family & Kids",
+    searchTitle: "Family Things to Do in Corpus Christi",
     navLabel: "Family",
-    summary: "Outings that work with children, still being checked.",
+    summary: "Aquarium time, playground breaks, and outings for little legs.",
     intro:
-      "This section is for outings that work with children.",
+      "Pick one main outing, then leave room for a playground or a short beach stop. The family guide covers indoor options, stroller logistics, and days with younger children.",
   },
   {
     slug: "food",
     title: "Food",
+    searchTitle: "Where to Eat in Corpus Christi",
     navLabel: "Food",
-    summary: "Where to eat, still being checked.",
+    summary: "Seafood downtown, breakfast on Alameda, and stops on the way to the island.",
     intro:
-      "This section is where to eat around Corpus Christi.",
+      "Pick a meal near the part of town you’re already visiting, from downtown seafood to a stop by the JFK Causeway.",
   },
   {
     slug: "neighborhoods",
     title: "Neighborhoods",
+    searchTitle: "Corpus Christi Neighborhoods Compared",
     navLabel: "Neighborhoods",
-    summary: "How locals name parts of town. No rankings and no prices.",
+    summary: "Compare five parts of Corpus Christi by geography, roads, and landmarks.",
     intro:
-      "This section will define area names people use, without ranking them and without home prices or school ratings. The sample guide is a checklist for those entries, not a description of any neighborhood.",
+      "Compare Downtown and the Bayfront, the Bay Area, Southside, Flour Bluff, and North Padre Island. Use the city’s planning maps for orientation and verify services and travel routes for each address.",
   },
   {
     slug: "moving",
     title: "Moving to Corpus Christi",
+    searchTitle: "Moving to Corpus Christi Checklist",
     navLabel: "Moving",
-    summary: "A starting point for relocating, and a place for a local realtor.",
+    summary: "Check utilities, flood maps, insurance questions, and your daily route before a move.",
     intro:
-      "This section will eventually hold practical notes for people relocating — utilities, insurance, and how the areas differ. Those notes are not written yet, because outdated rules would be worse than a blank page. The realtor profile below is a placeholder, not an advertisement.",
+      "Use this relocation checklist to compare addresses, ask the right questions before signing a lease or purchase contract, and get services ready for move-in.",
   },
 ] as const;
 
@@ -84,3 +91,5 @@ export function guidePath(slug: string): string {
 export function guideMarkdownPath(slug: string): string {
   return `/guides/${slug}.md`;
 }
+
+export const WEEKEND_GUIDE_PATH = guidePath("corpus-christi-weekend-itinerary");

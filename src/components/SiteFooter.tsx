@@ -1,3 +1,4 @@
+import { realtor } from "@/config/realtor";
 import Link from "next/link";
 import { SECTIONS, topicPath } from "@/lib/sections";
 import { SITE_NAME } from "@/lib/site";
@@ -9,9 +10,18 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-2xl font-semibold">{SITE_NAME}</p>
           <p className="mt-3 max-w-sm leading-relaxed text-muted">
-            Corpus Christi and the Coastal Bend. Guides marked Draft are still being checked.
+            Cole Zill runs CC Bay Life and took the Lexington photo on the homepage. Kim Zill, the real estate salesperson featured in the moving guide, is his mother.
           </p>
-          <p className="mt-4 text-sm text-muted">No analytics and no ads in this version.</p>
+          {realtor.iabsUrl || realtor.consumerProtectionNoticeUrl ? (
+            <ul aria-label="Texas Real Estate Commission notices" className="mt-4 space-y-2 font-semibold text-ocean underline underline-offset-4">
+              {realtor.iabsUrl ? (
+                <li><a href={realtor.iabsUrl}>Texas Real Estate Commission Information About Brokerage Services</a></li>
+              ) : null}
+              {realtor.consumerProtectionNoticeUrl ? (
+                <li><a href={realtor.consumerProtectionNoticeUrl}>Texas Real Estate Commission Consumer Protection Notice</a></li>
+              ) : null}
+            </ul>
+          ) : null}
         </div>
         <div className="grid grid-cols-2 gap-6">
           <nav aria-label="Footer sections">
@@ -33,6 +43,9 @@ export function SiteFooter() {
                 <Link href="/" className="underline-offset-4 hover:underline">
                   Home
                 </Link>
+              </li>
+              <li>
+                <Link href="/events/" className="underline-offset-4 hover:underline">Events</Link>
               </li>
               <li>
                 <Link href="/privacy/" className="underline-offset-4 hover:underline">

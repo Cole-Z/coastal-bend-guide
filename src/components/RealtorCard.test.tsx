@@ -57,8 +57,8 @@ describe("realtor profile", () => {
 describe("RealtorCard", () => {
   it("shows her profile link, disclosure, and a fixed-size local portrait", () => {
     const html = renderToStaticMarkup(<RealtorCard />);
-    expect(html).toContain("Moving to Corpus Christi?");
-    expect(html).toContain("Work with a local realtor");
+    expect(html).toContain("Ask Kim about relocating");
+    expect(html).toContain('href="tel:3615585577"');
     expect(html).toContain("Kim Zill");
     expect(html).toContain("Coldwell Banker Pacesetter Steel");
     expect(html).toContain("Kim Zill is a real estate agent affiliated with Coldwell Banker Pacesetter Steel");

@@ -10,10 +10,21 @@ import { JsonLd } from "@/components/JsonLd";
 import { guideMdxComponents } from "@/components/mdx-components";
 import { guideUpdatedLabel } from "@/lib/dates";
 import { renderGuideMarkdown } from "@/lib/guide-markdown";
-import { getAllGuides, getGuideBySlug } from "@/lib/guides";
+import { getAllGuides, getGuideBySlug, publishedGuides } from "@/lib/guides";
 import { getSection, guideMarkdownPath, guidePath, topicPath } from "@/lib/sections";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { breadcrumbJsonLd, guideArticleJsonLd } from "@/lib/structured-data";
+
+const relatedSlugs: Record<string, readonly string[]> = {
+  "corpus-christi-weekend-itinerary": ["uss-lexington-museum-visit", "family-things-to-do-corpus-christi", "best-local-restaurants-corpus-christi"],
+  "uss-lexington-museum-visit": ["family-things-to-do-corpus-christi", "corpus-christi-weekend-itinerary"],
+  "padre-island-national-seashore-day-trip": ["corpus-christi-weekend-itinerary", "family-things-to-do-corpus-christi"],
+  "family-things-to-do-corpus-christi": ["uss-lexington-museum-visit", "corpus-christi-weekend-itinerary"],
+  "best-local-restaurants-corpus-christi": ["corpus-christi-weekend-itinerary", "corpus-christi-nightlife"],
+  "corpus-christi-nightlife": ["best-local-restaurants-corpus-christi", "corpus-christi-weekend-itinerary"],
+  "boat-tours-fishing-charters-piers-corpus-christi": ["padre-island-national-seashore-day-trip", "corpus-christi-weekend-itinerary"],
+  "selena-corpus-christi-mirador-de-la-flor": ["corpus-christi-weekend-itinerary", "best-local-restaurants-corpus-christi"],
+};
 
 interface GuidePageProps {
   params: Promise<{ slug: string }>;
@@ -53,6 +64,10 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const section = getSection(guide.section);
   const url = `${SITE_URL}${guidePath(guide.slug)}`;
   const dateLabel = guideUpdatedLabel(guide);
+  const published = publishedGuides(getAllGuides());
+  const related = (relatedSlugs[slug] ?? []).flatMap((relatedSlug) =>
+    published.filter((candidate) => candidate.slug === relatedSlug),
+  );
   const markdown = renderGuideMarkdown(
     guide,
     { siteUrl: SITE_URL, siteName: SITE_NAME, siteDescription: SITE_DESCRIPTION },
@@ -80,20 +95,14 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <span aria-hidden="true"> / </span>
         <span aria-current="page">{guide.title}</span>
       </nav>
-      <div className="mt-4 flex flex-wrap items-center gap-3">
-        {guide.draft ? <DraftBadge /> : null}
-        <p className="text-sm font-semibold text-ocean">{section.title}</p>
-      </div>
-      <h1 className="mt-3 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
+      <h1 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
         {guide.title}
       </h1>
-      {dateLabel ? <p className="mt-3 text-muted">{dateLabel}</p> : null}
-      <GuideMarkdownActions
-        markdown={markdown}
-        fileName={`${guide.slug}.md`}
-        downloadHref={guide.draft ? null : guideMarkdownPath(guide.slug)}
-      />
       <p className="mt-4 text-lg leading-relaxed">{guide.description}</p>
+      <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-muted">
+        {guide.draft ? <DraftBadge /> : null}
+        {dateLabel ? <p>{dateLabel}</p> : null}
+      </div>
       {guide.draft ? (
         <div className="mt-6">
           <DraftBanner />
@@ -102,11 +111,28 @@ export default async function GuidePage({ params }: GuidePageProps) {
       <div className="mt-2">
         <MDXRemote source={guide.content} components={guideMdxComponents} />
       </div>
-      <p className="mt-12">
-        <Link href={topicPath(section.slug)} className="font-semibold text-ocean underline underline-offset-4">
-          More in {section.title}
-        </Link>
-      </p>
+      {!guide.draft ? (
+        <nav aria-label="Related reading" className="mt-10 rounded-2xl bg-foam p-5 ring-1 ring-line">
+          <h2 className="font-display text-xl font-semibold">Keep planning</h2>
+          <ul className="mt-2 space-y-2 font-semibold text-ocean underline underline-offset-4">
+            {related.map((item) => (
+              <li key={item.slug}><Link className="inline-flex min-h-11 items-center" href={guidePath(item.slug)}>{item.title}</Link></li>
+            ))}
+            <li>
+              <Link className="inline-flex min-h-11 items-center" href={topicPath(section.slug)}>
+                {section.slug === "beaches" ? "Compare Corpus Christi beaches" : `More in ${section.title}`}
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      ) : null}
+      <aside aria-label="Markdown tools" className="mt-8 border-t border-line">
+        <GuideMarkdownActions
+          markdown={markdown}
+          fileName={`${guide.slug}.md`}
+          downloadHref={guide.draft ? null : guideMarkdownPath(guide.slug)}
+        />
+      </aside>
     </article>
   );
 }

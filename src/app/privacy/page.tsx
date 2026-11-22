@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
-import { SITE_CONTENT_UPDATED, SITE_NAME, SITE_URL } from "@/lib/site";
+import { PRIVACY_UPDATED, SITE_NAME, SITE_URL } from "@/lib/site";
 import { formatDate } from "@/lib/dates";
 
 const title = "Privacy";
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
         <span aria-current="page">Privacy</span>
       </nav>
       <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">Privacy</h1>
-      <p className="mt-3 text-muted">Last updated {formatDate(SITE_CONTENT_UPDATED)}.</p>
+      <p className="mt-3 text-muted">Last updated {formatDate(PRIVACY_UPDATED)}.</p>
 
       <div className="mt-8 space-y-8 text-lg leading-relaxed">
         <section aria-labelledby="privacy-what">

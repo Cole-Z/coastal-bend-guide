@@ -6,20 +6,24 @@ describe("toSitemapEntries", () => {
   const entries = toSitemapEntries({
     siteUrl: "https://example.com",
     contentUpdated: "2026-11-14",
+    privacyUpdated: "2026-11-13",
+    eventsUpdated: "2026-11-22",
     guides: [
       { slug: "beach-draft", section: "beaches", updated: "2026-11-20", draft: true },
       { slug: "food-ready", section: "food", updated: "2026-11-01", draft: false },
+      { slug: "new-food", section: "food", date: "2026-11-17", draft: false },
     ],
   });
 
   it("uses content dates for lastmod and skips drafts", () => {
     const byUrl = new Map(entries.map((entry) => [entry.url, entry]));
-    expect(byUrl.get("https://example.com/")?.lastModified).toBe("2026-11-20");
-    expect(byUrl.get("https://example.com/topics/beaches/")?.lastModified).toBe("2026-11-20");
-    expect(byUrl.get("https://example.com/topics/food/")?.lastModified).toBe("2026-11-14");
+    expect(byUrl.get("https://example.com/")?.lastModified).toBe("2026-11-17");
+    expect(byUrl.get("https://example.com/topics/beaches/")?.lastModified).toBe("2026-11-14");
+    expect(byUrl.get("https://example.com/topics/food/")?.lastModified).toBe("2026-11-17");
     expect(byUrl.get("https://example.com/guides/food-ready/")?.lastModified).toBe("2026-11-01");
     expect(byUrl.has("https://example.com/guides/beach-draft/")).toBe(false);
-    expect(byUrl.get("https://example.com/privacy/")?.lastModified).toBe("2026-11-14");
+    expect(byUrl.get("https://example.com/privacy/")?.lastModified).toBe("2026-11-13");
+    expect(byUrl.get("https://example.com/events/")?.lastModified).toBe("2026-11-22");
   });
 
   it("writes absolute trailing-slash URLs", () => {
@@ -37,10 +41,13 @@ describe("getSitemapEntries", () => {
     expect(urls).toContain(`${SITE_URL}/`);
     expect(urls).toContain(`${SITE_URL}/privacy/`);
     expect(urls).toContain(`${SITE_URL}/topics/moving/`);
+    expect(urls).toContain(`${SITE_URL}/topics/neighborhoods/`);
+    expect(urls).toContain(`${SITE_URL}/events/`);
     for (const slug of [
       "best-local-restaurants-corpus-christi",
       "boat-tours-fishing-charters-piers-corpus-christi",
       "corpus-christi-nightlife",
+      "corpus-christi-weekend-itinerary",
       "family-things-to-do-corpus-christi",
       "padre-island-national-seashore-day-trip",
       "selena-corpus-christi-mirador-de-la-flor",

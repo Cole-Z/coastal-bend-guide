@@ -5,44 +5,15 @@ import { realtorAgentJsonLd } from "@/lib/structured-data";
 import { SITE_URL } from "@/lib/site";
 import { topicPath } from "@/lib/sections";
 
-type RealtorCardVariant = "feature" | "embedded";
-
-function CardHeading({ variant, headingId }: { variant: RealtorCardVariant; headingId: string }) {
-  switch (variant) {
-    case "feature":
-      return (
-        <div>
-          <h2 id={headingId} className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-            Moving to Corpus Christi?
-          </h2>
-          <p className="mt-2 font-display text-2xl text-ocean">Work with a local realtor</p>
-        </div>
-      );
-    case "embedded":
-      return (
-        <h2 id={headingId} className="font-display text-3xl font-semibold tracking-tight text-ink">
-          Work with a local realtor
-        </h2>
-      );
-    default: {
-      const exhaustive: never = variant;
-      return exhaustive;
-    }
-  }
-}
-
-export function RealtorCard({
-  variant = "feature",
-  headingId = "realtor-heading",
-}: {
-  variant?: RealtorCardVariant;
-  headingId?: string;
-}) {
+export function RealtorCard() {
+  const headingId = "realtor-heading";
   const pageUrl = `${SITE_URL}${topicPath("moving")}`;
   return (
     <section aria-labelledby={headingId} className="rounded-[2rem] bg-foam p-6 ring-1 ring-line sm:p-8">
       <JsonLd data={realtorAgentJsonLd(realtor, pageUrl)} />
-      <CardHeading variant={variant} headingId={headingId} />
+      <h2 id={headingId} className="font-display text-3xl font-semibold tracking-tight text-ink">
+        Ask Kim about relocating
+      </h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-[160px_minmax(0,1fr)] sm:items-center">
         {/* Fixed 160×160 box. The file is 480×480 so the circle stays sharp. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -60,18 +31,9 @@ export function RealtorCard({
           <p className="mt-1 text-muted">{realtor.role}</p>
           {realtor.officeCity ? <p className="mt-1 text-muted">{realtor.officeCity}</p> : null}
           {realtor.officeAddress ? <p className="text-muted">{realtor.officeAddress}</p> : null}
-          {realtor.bio ? <p className="mt-4 leading-relaxed text-ink">{realtor.bio}</p> : null}
-          {realtor.isPlaceholder ? (
-            <p className="mt-4 leading-relaxed text-ink">
-              Placeholder only. This name, photo, and email are not a real profile and this block is not an
-              advertisement. Brokerage advertising rules and required disclosures are not applied yet.
-            </p>
-          ) : (
-            <p className="mt-4 leading-relaxed text-ink">
-              {realtor.disclosure ||
-                "Add the brokerage’s required advertising disclosures in the realtor config before treating this as an ad."}
-            </p>
-          )}
+          <p className="mt-4 leading-relaxed">
+            In your email, share when you plan to move, whether you’re looking to rent or buy, and what you’d like to discuss.
+          </p>
           {realtor.license ? <p className="mt-2 text-sm text-muted">{realtor.license}</p> : null}
           <div className="mt-5 flex flex-col items-start gap-3">
             <a
@@ -87,17 +49,11 @@ export function RealtorCard({
               href={realtorMailto(realtor)}
               className="inline-flex rounded-full border border-ocean px-5 py-2.5 font-semibold text-ocean"
             >
-              Email about moving
+              Email Kim about moving
             </a>
-            {realtor.isPlaceholder ? (
-              <p className="text-sm text-muted">
-                Placeholder address (not a monitored inbox): {realtor.email}
-              </p>
-            ) : (
-              <p className="text-sm text-muted">{realtor.email}</p>
-            )}
+            <p className="break-all text-sm text-muted">{realtor.email}</p>
             {realtor.phone ? (
-              <a href={realtorTel(realtor.phone)} className="font-semibold text-ocean underline underline-offset-2">
+              <a href={realtorTel(realtor.phone)} className="inline-flex min-h-11 items-center font-semibold text-ocean underline underline-offset-2">
                 {realtor.phone}
               </a>
             ) : null}

@@ -53,7 +53,8 @@ body {
 
 #sections,
 #guides,
-#moving {
+#moving,
+article [id] {
   scroll-margin-top: 5rem;
 }
 
