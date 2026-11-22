@@ -4,10 +4,6 @@ import { getSection, guidePath } from "@/lib/sections";
 import type { Guide } from "@/lib/guides";
 
 export function GuideList({ guides }: { guides: readonly Guide[] }) {
-  if (guides.length === 0) {
-    return <p className="text-lg leading-relaxed text-muted">A guide for this section has not been written yet.</p>;
-  }
-
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
       {guides.map((guide) => (

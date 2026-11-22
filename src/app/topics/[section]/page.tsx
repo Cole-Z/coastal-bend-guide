@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { FoodShortlist } from "@/components/FoodShortlist";
+import { MovingChecklist } from "@/components/MovingChecklist";
+import { NeighborhoodComparison } from "@/components/NeighborhoodComparison";
 import { GuideList } from "@/components/GuideList";
 import { JsonLd } from "@/components/JsonLd";
 import { RealtorCard } from "@/components/RealtorCard";
-import { getGuidesBySection } from "@/lib/guides";
-import { getSection, isSectionSlug, SECTIONS, topicPath } from "@/lib/sections";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { getGuidesBySection, publishedGuides } from "@/lib/guides";
+import { getSection, isSectionSlug, SECTIONS, topicPath, WEEKEND_GUIDE_PATH } from "@/lib/sections";
+import { SITE_URL } from "@/lib/site";
 import { breadcrumbJsonLd, topicPageJsonLd } from "@/lib/structured-data";
 
 interface TopicPageProps {
@@ -26,44 +29,34 @@ export async function generateMetadata({ params }: TopicPageProps): Promise<Meta
   const description = section.intro;
   const path = topicPath(section.slug);
   return {
-    title: section.title,
+    title: section.searchTitle,
     description,
     alternates: { canonical: path },
     openGraph: {
-      title: section.title,
+      title: section.searchTitle,
       description,
       url: path,
     },
   };
 }
 
-function TopicExtra({ section }: { section: ReturnType<typeof getSection>["slug"] }) {
-  switch (section) {
-    case "moving":
-      return (
-        <div className="mt-10">
-          <RealtorCard variant="embedded" />
-        </div>
-      );
-    case "things-to-do":
-    case "beaches":
-    case "fishing":
-    case "family-and-kids":
-    case "food":
-    case "neighborhoods":
-      return null;
-    default: {
-      const exhaustive: never = section;
-      return exhaustive;
-    }
-  }
+function BeachOverview() {
+  return (
+    <section aria-labelledby="beach-options" className="mt-8 rounded-2xl bg-foam p-5 ring-1 ring-line">
+      <h2 id="beach-options" className="font-display text-2xl font-semibold">Bay or Gulf?</h2>
+      <ul className="mt-3 list-disc space-y-3 pl-5 text-lg leading-relaxed">
+        <li><strong>Corpus Christi Bay.</strong> McGee Beach is by the downtown seawall. North Beach is across the Harbor Bridge beside the Lexington and aquarium. See the <a className="font-semibold text-ocean underline underline-offset-4" href="https://www.corpuschristitx.gov/department-directory/parks-and-recreation/beaches/bay-beaches/">City’s bay beach information</a>.</li>
+        <li><strong>Gulf.</strong> Whitecap is a city beach, Mustang Island State Park is managed by Texas Parks and Wildlife, and Malaquite is part of Padre Island National Seashore. Each has its own parking or entry rules. See the <Link href={`${WEEKEND_GUIDE_PATH}#day-2-pick-one-gulf-beach`} className="font-semibold text-ocean underline underline-offset-4">three-way Gulf beach comparison</Link> for conditions and entry links.</li>
+      </ul>
+    </section>
+  );
 }
 
 export default async function TopicPage({ params }: TopicPageProps) {
   const { section: slug } = await params;
   if (!isSectionSlug(slug)) notFound();
   const section = getSection(slug);
-  const guides = getGuidesBySection(section.slug);
+  const guides = publishedGuides(getGuidesBySection(section.slug));
   const url = `${SITE_URL}${topicPath(section.slug)}`;
 
   return (
@@ -86,18 +79,25 @@ export default async function TopicPage({ params }: TopicPageProps) {
         {section.title}
       </h1>
       <p className="mt-4 text-lg leading-relaxed">{section.intro}</p>
-      <section aria-labelledby="topic-guides" className="mt-10">
-        <h2 id="topic-guides" className="font-display text-2xl font-semibold text-ink">
-          Guides
-        </h2>
-        <div className="mt-4">
-          <GuideList guides={guides} />
-        </div>
-      </section>
-      <TopicExtra section={section.slug} />
-      <p className="mt-10 text-sm text-muted">
-        Part of {SITE_NAME}. Draft guides stay out of the sitemap until their facts are checked.
-      </p>
+      {slug === "beaches" ? <BeachOverview /> : null}
+      {slug === "food" ? <FoodShortlist /> : null}
+      {slug === "neighborhoods" ? <NeighborhoodComparison /> : null}
+      {slug === "moving" ? (
+        <>
+          <MovingChecklist />
+          <div className="mt-10"><RealtorCard /></div>
+        </>
+      ) : null}
+      {guides.length > 0 ? (
+        <section aria-labelledby="topic-guides" className="mt-10">
+          <h2 id="topic-guides" className="font-display text-2xl font-semibold text-ink">
+            {slug === "food" ? "More places to eat and drink" : "Guides"}
+          </h2>
+          <div className="mt-4">
+            <GuideList guides={guides} />
+          </div>
+        </section>
+      ) : null}
     </article>
   );
 }

@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { topicPath, WEEKEND_GUIDE_PATH } from "@/lib/sections";
+
 const WIDTHS = [640, 1024, 1600, 2048, 2560] as const;
 const HERO_CAP_PX = 1760;
 
@@ -50,21 +53,21 @@ export function LexingtonHero() {
             Corpus Christi and the Coastal Bend.
           </h1>
           <p className="mt-5 text-lg leading-relaxed text-pretty text-ink">
-            Beaches, fishing, food, neighborhoods, and what to know if you are moving here.
+            Plan a day on the bay, find your next weekend outing, or get oriented before a move.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a
-              href="#sections"
+            <Link
+              href={WEEKEND_GUIDE_PATH}
               className="inline-flex items-center justify-center rounded-full bg-ocean px-5 py-3 font-semibold text-ocean-ink"
             >
-              Browse sections
-            </a>
-            <a
-              href="#moving"
+              Plan a weekend
+            </Link>
+            <Link
+              href={topicPath("moving")}
               className="inline-flex items-center justify-center rounded-full border border-ocean bg-sand px-5 py-3 font-semibold text-ocean"
             >
-              Moving here
-            </a>
+              Moving to Corpus Christi
+            </Link>
           </div>
         </div>
       </div>

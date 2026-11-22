@@ -1,0 +1,74 @@
+{
+  "updated": "2026-11-22",
+  "events": [
+    {
+      "id": "holly-days-nov-27",
+      "title": "Holly-Days at the Gardens",
+      "date": "2026-11-27",
+      "time": "17:30",
+      "venue": "South Texas Botanical Gardens & Nature Center",
+      "city": "Corpus Christi",
+      "price": "Free Friday admission",
+      "url": "https://stxbot.org/holly-days-at-the-gardens/",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    },
+    {
+      "id": "first-friday-artwalk-dec-4",
+      "title": "First Friday ArtWalk",
+      "date": "2026-12-04",
+      "time": "18:00",
+      "venue": "Downtown Corpus Christi",
+      "city": "Corpus Christi",
+      "price": "Free to attend",
+      "url": "https://downtowncorpuschristi.org/do/first-friday-artwalk-presented-by-h-e-b",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    },
+    {
+      "id": "holidays-on-the-harbor",
+      "title": "Holidays on the Harbor",
+      "date": "2026-12-05",
+      "time": "16:00",
+      "venue": "Water’s Edge Park and the Municipal Marina",
+      "city": "Corpus Christi",
+      "url": "https://downtowncorpuschristi.org/do/holidays-on-the-harbor-ft-the-h-e-b-holiday-tree-and-the-port-of-corpus-christi-illuminated-boat-parade",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    },
+    {
+      "id": "la-posada-north",
+      "title": "La Posada Lighted Boat Parade · North Canals",
+      "date": "2026-12-11",
+      "time": "19:00",
+      "venue": "North Padre Island, North Canals",
+      "city": "Corpus Christi",
+      "url": "https://laposadafoundation.org/",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    },
+    {
+      "id": "la-posada-south",
+      "title": "La Posada Lighted Boat Parade · South Canals",
+      "date": "2026-12-12",
+      "time": "18:00",
+      "venue": "North Padre Island, South Canals",
+      "city": "Corpus Christi",
+      "url": "https://laposadafoundation.org/",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    },
+    {
+      "id": "buc-days-2027",
+      "title": "Buc Days",
+      "date": "2027-04-29",
+      "endDate": "2027-05-09",
+      "venue": "Buc Days Festival Grounds at the Hilliard Center",
+      "city": "Corpus Christi",
+      "price": "Prices vary by attraction",
+      "url": "https://bucdays.com/faqs/",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    }
+  ]
+}

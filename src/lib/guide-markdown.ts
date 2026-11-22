@@ -122,7 +122,7 @@ export function renderLlmsTxt(guides: readonly Guide[], site: GuideMarkdownSite)
     "",
     site.siteUrl,
     "",
-    "Published guides are listed here with a Markdown copy. Draft guides stay off this list.",
+    "Markdown copies of CC Bay Life guides.",
     "",
   ];
 

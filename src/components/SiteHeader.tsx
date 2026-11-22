@@ -38,6 +38,9 @@ export function SiteHeader() {
               {section.navLabel}
             </Link>
           ))}
+          <Link href="/events/" className="text-sm font-semibold underline-offset-4 hover:text-ocean hover:underline">
+            Events
+          </Link>
         </nav>
         <button
           type="button"
@@ -63,6 +66,11 @@ export function SiteHeader() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link href="/events/" className="block rounded-xl px-2 py-3 font-semibold hover:bg-sand hover:text-ocean" onClick={() => setOpen(false)}>
+                Events
+              </Link>
+            </li>
           </ul>
         </nav>
       ) : null}

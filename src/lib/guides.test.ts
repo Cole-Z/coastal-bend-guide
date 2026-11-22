@@ -45,13 +45,14 @@ describe("publishedGuides", () => {
 });
 
 describe("sample guides", () => {
-  it("publishes the first guide batch and keeps the orientation outlines as drafts", () => {
+  it("publishes the guide inventory and keeps the orientation outlines as drafts", () => {
     const guides = getAllGuides();
     expect(guides.map((guide) => guide.slug).sort()).toEqual([
       "beaches-orientation",
       "best-local-restaurants-corpus-christi",
       "boat-tours-fishing-charters-piers-corpus-christi",
       "corpus-christi-nightlife",
+      "corpus-christi-weekend-itinerary",
       "family-things-to-do-corpus-christi",
       "fishing-orientation",
       "neighborhoods-orientation",
@@ -64,6 +65,7 @@ describe("sample guides", () => {
       "best-local-restaurants-corpus-christi",
       "boat-tours-fishing-charters-piers-corpus-christi",
       "corpus-christi-nightlife",
+      "corpus-christi-weekend-itinerary",
       "family-things-to-do-corpus-christi",
       "padre-island-national-seashore-day-trip",
       "selena-corpus-christi-mirador-de-la-flor",

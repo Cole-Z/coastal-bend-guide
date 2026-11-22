@@ -6,11 +6,8 @@
  * The portrait is a local copy of the headshot on that page. Kim Zill gave
  * permission to use it. `width` and `height` are the 160px layout box.
  *
- * TODO: Before this block is treated as a finished advertisement, confirm
- * the brokerage's advertising rules and add the Texas TREC links those
- * rules require: Information About Brokerage Services, and the Consumer
- * Protection Notice. Those links were not on her profile page. This
- * comment is a reminder, not legal advice.
+ * OWNER AND SPONSORING BROKER REVIEW REQUIRED BEFORE ROLLOUT.
+ * See docs/cc-bay-life-release.md for the name, placement, brokerage and notice review.
  */
 export interface RealtorProfile {
   name: string;
@@ -36,6 +33,8 @@ export interface RealtorProfile {
   profileUrl: string;
   profileLinkLabel: string;
   mailtoSubject: string;
+  iabsUrl: string;
+  consumerProtectionNoticeUrl: string;
   /** Shown on the card once `isPlaceholder` is false. */
   disclosure: string;
   /**
@@ -65,6 +64,8 @@ export const realtor: RealtorProfile = {
     "https://www.coldwellbanker.com/tx/corpus-christi/agents/kim-zill/aid-P00200000Fm5LJUpvQy2Hq5Q7cd2u1JDbDzMYO63",
   profileLinkLabel: "View Kim's listings & profile",
   mailtoSubject: "Moving to Corpus Christi",
+  iabsUrl: "",
+  consumerProtectionNoticeUrl: "",
   disclosure:
     "Kim Zill is a real estate agent affiliated with Coldwell Banker Pacesetter Steel in Corpus Christi, TX.",
   isPlaceholder: false,
