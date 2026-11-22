@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
+import { socialMetadata } from "@/lib/social-metadata";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { PRIVACY_UPDATED, SITE_NAME, SITE_URL } from "@/lib/site";
 import { formatDate } from "@/lib/dates";
@@ -12,11 +13,7 @@ export const metadata: Metadata = {
   title,
   description,
   alternates: { canonical: "/privacy/" },
-  openGraph: {
-    title,
-    description,
-    url: "/privacy/",
-  },
+  ...socialMetadata({ title, description, path: "/privacy/" }),
 };
 
 export default function PrivacyPage() {

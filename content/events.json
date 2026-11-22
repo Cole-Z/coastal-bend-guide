@@ -59,6 +59,28 @@
       "state": "scheduled"
     },
     {
+      "id": "nutcracker-dec-19",
+      "title": "Corpus Christi Ballet’s The Nutcracker",
+      "date": "2026-12-19",
+      "time": "19:00",
+      "venue": "Selena Auditorium at the Hilliard Center",
+      "city": "Corpus Christi",
+      "url": "https://www.corpuschristiballet.com/home",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    },
+    {
+      "id": "islanders-northwestern-state-jan-9",
+      "title": "Islanders men’s basketball vs. Northwestern State",
+      "date": "2027-01-09",
+      "time": "15:30",
+      "venue": "Hilliard Center",
+      "city": "Corpus Christi",
+      "url": "https://goislanders.com/sports/mens-basketball/schedule/2026-27",
+      "verified": "2026-11-22",
+      "state": "scheduled"
+    },
+    {
       "id": "buc-days-2027",
       "title": "Buc Days",
       "date": "2027-04-29",
@@ -68,7 +90,8 @@
       "price": "Prices vary by attraction",
       "url": "https://bucdays.com/faqs/",
       "verified": "2026-11-22",
-      "state": "scheduled"
+      "state": "scheduled",
+      "timeNote": "varies"
     }
   ]
 }

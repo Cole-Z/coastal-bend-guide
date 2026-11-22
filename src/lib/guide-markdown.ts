@@ -1,5 +1,5 @@
 import type { RealtorProfile } from "@/config/realtor";
-import { guideUpdatedLabel } from "@/lib/dates";
+import { formatDate, guideUpdatedLabel } from "@/lib/dates";
 import type { Guide } from "@/lib/guides";
 import { publishedGuides } from "@/lib/guides";
 import { guideMarkdownPath, guidePath, SECTIONS } from "@/lib/sections";
@@ -79,7 +79,11 @@ function contactLines(contact: GuideMarkdownContact): string[] {
   return lines.filter((line) => line.trim().length > 0);
 }
 
-/** Plain Markdown for one guide: YAML front matter, title, date, canonical URL, body, and the site contact footer. */
+function escapeMarkdownText(value: string): string {
+  return value.replace(/[\\`*_\[\]<>]/g, "\\$&");
+}
+
+/** Plain Markdown for one guide, including its verification sources and contact footer. */
 export function renderGuideMarkdown(
   guide: Guide,
   site: GuideMarkdownSite,
@@ -99,6 +103,14 @@ export function renderGuideMarkdown(
   }
   if (guide.content.trim()) {
     parts.push(guide.content.trim(), "");
+  }
+  if (guide.sources.length > 0) {
+    parts.push("## Sources and verification", "");
+    for (const { label, url, checked, caveat } of guide.sources) {
+      const note = caveat ? ` ${escapeMarkdownText(caveat)}` : "";
+      parts.push(`- [${escapeMarkdownText(label)}](<${url}>) · Checked ${formatDate(checked)}.${note}`);
+    }
+    parts.push("");
   }
   parts.push(
     "---",

@@ -10,6 +10,7 @@ import { RealtorCard } from "@/components/RealtorCard";
 import { getGuidesBySection, publishedGuides } from "@/lib/guides";
 import { getSection, isSectionSlug, SECTIONS, topicPath, WEEKEND_GUIDE_PATH } from "@/lib/sections";
 import { SITE_URL } from "@/lib/site";
+import { socialMetadata } from "@/lib/social-metadata";
 import { breadcrumbJsonLd, topicPageJsonLd } from "@/lib/structured-data";
 
 interface TopicPageProps {
@@ -32,11 +33,7 @@ export async function generateMetadata({ params }: TopicPageProps): Promise<Meta
     title: section.searchTitle,
     description,
     alternates: { canonical: path },
-    openGraph: {
-      title: section.searchTitle,
-      description,
-      url: path,
-    },
+    ...socialMetadata({ title: section.searchTitle, description, path }),
   };
 }
 

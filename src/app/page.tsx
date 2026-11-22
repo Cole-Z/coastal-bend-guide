@@ -6,12 +6,13 @@ import { JsonLd } from "@/components/JsonLd";
 import { SectionIcon } from "@/components/SectionIcon";
 import { getAllGuides, publishedGuides } from "@/lib/guides";
 import { SECTIONS, topicPath, WEEKEND_GUIDE_PATH } from "@/lib/sections";
-import { SITE_URL } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "@/lib/site";
+import { socialMetadata } from "@/lib/social-metadata";
 import { websiteJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  openGraph: { url: "/" },
+  ...socialMetadata({ title: SITE_TITLE, description: SITE_DESCRIPTION, path: "/" }),
 };
 
 const quickStarts = [

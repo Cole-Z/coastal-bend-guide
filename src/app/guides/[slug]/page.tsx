@@ -8,11 +8,12 @@ import { DraftBadge } from "@/components/DraftBadge";
 import { GuideMarkdownActions } from "@/components/GuideMarkdownActions";
 import { JsonLd } from "@/components/JsonLd";
 import { guideMdxComponents } from "@/components/mdx-components";
-import { guideUpdatedLabel } from "@/lib/dates";
+import { formatDate, guideUpdatedLabel } from "@/lib/dates";
 import { renderGuideMarkdown } from "@/lib/guide-markdown";
 import { getAllGuides, getGuideBySlug, publishedGuides } from "@/lib/guides";
 import { getSection, guideMarkdownPath, guidePath, topicPath } from "@/lib/sections";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { socialMetadata } from "@/lib/social-metadata";
 import { breadcrumbJsonLd, guideArticleJsonLd } from "@/lib/structured-data";
 
 const relatedSlugs: Record<string, readonly string[]> = {
@@ -46,14 +47,12 @@ export async function generateMetadata({ params }: GuidePageProps): Promise<Meta
     description: guide.description,
     alternates: { canonical: path },
     robots: guide.draft ? { index: false, follow: true } : { index: true, follow: true },
-    openGraph: {
-      type: "article",
+    ...socialMetadata({
       title: guide.title,
       description: guide.description,
-      url: path,
-      publishedTime: guide.date,
-      modifiedTime: guide.updated,
-    },
+      path,
+      article: { publishedTime: guide.date, modifiedTime: guide.updated },
+    }),
   };
 }
 
@@ -111,6 +110,21 @@ export default async function GuidePage({ params }: GuidePageProps) {
       <div className="mt-2">
         <MDXRemote source={guide.content} components={guideMdxComponents} />
       </div>
+      {guide.sources.length > 0 ? (
+        <section aria-labelledby="guide-sources" className="mt-10 border-t border-line pt-6">
+          <h2 id="guide-sources" className="font-display text-2xl font-semibold">Sources and verification</h2>
+          <ul className="mt-4 space-y-4">
+            {guide.sources.map(({ label, url, checked, caveat }) => (
+              <li key={url}>
+                <a href={url} className="font-semibold text-ocean underline underline-offset-4">{label}</a>
+                <p className="mt-1 text-muted">
+                  Checked <time dateTime={checked}>{formatDate(checked)}</time>.{caveat ? ` ${caveat}` : ""}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
       {!guide.draft ? (
         <nav aria-label="Related reading" className="mt-10 rounded-2xl bg-foam p-5 ring-1 ring-line">
           <h2 className="font-display text-xl font-semibold">Keep planning</h2>

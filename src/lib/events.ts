@@ -8,6 +8,7 @@ const event = z.strictObject({
   date: z.iso.date(),
   endDate: z.iso.date().optional(),
   time: z.string().regex(/^(?:[01]\d|2[0-3]):[0-5]\d$/).optional(),
+  timeNote: z.literal("varies").optional(),
   venue: z.string().trim().min(1),
   city: z.string().trim().min(1),
   price: z.string().trim().min(1).optional(),

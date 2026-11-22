@@ -9,6 +9,17 @@ const SECTION_SLUGS = SECTIONS.map((section) => section.slug) as [
   ...SectionSlug[],
 ];
 
+const guideSource = z.strictObject({
+  label: z.string().trim().min(1).regex(/^[^\r\n]+$/),
+  url: z.url({ protocol: /^https$/ }).refine((url) => /^https:\/\/[^\s<>]+$/.test(url), {
+    message: "Use an absolute HTTPS URL.",
+  }),
+  checked: z.iso.date(),
+  caveat: z.string().trim().min(1).regex(/^[^\r\n]+$/).optional(),
+});
+
+export type GuideSource = z.infer<typeof guideSource>;
+
 const guideFrontmatter = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
@@ -16,6 +27,7 @@ const guideFrontmatter = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   updated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   draft: z.boolean(),
+  sources: z.array(guideSource).default([]),
 });
 
 export interface Guide {
@@ -27,6 +39,7 @@ export interface Guide {
   updated?: string;
   draft: boolean;
   content: string;
+  sources: readonly GuideSource[];
 }
 
 const GUIDES_DIR = path.join(process.cwd(), "content/guides");
@@ -63,16 +76,7 @@ export function parseGuide(fileName: string, raw: string): Guide {
     throw new Error(`Guide ${fileName} has invalid frontmatter: ${message}`);
   }
 
-  return {
-    slug,
-    title: parsed.data.title,
-    description: parsed.data.description,
-    section: parsed.data.section,
-    date: parsed.data.date,
-    updated: parsed.data.updated,
-    draft: parsed.data.draft,
-    content: content.trim(),
-  };
+  return { slug, ...parsed.data, content: content.trim() };
 }
 
 export function publishedGuides(guides: readonly Guide[]): Guide[] {

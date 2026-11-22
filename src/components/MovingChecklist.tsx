@@ -18,6 +18,7 @@ export function MovingChecklist() {
         <a className="inline-flex min-h-11 items-center" href="#before-touring">Before touring</a>
         <a className="inline-flex min-h-11 items-center" href="#before-signing">Before signing</a>
         <a className="inline-flex min-h-11 items-center" href="#before-move-in">Before move-in</a>
+        <a className="inline-flex min-h-11 items-center" href="#realtor-heading">Ask Kim about relocating</a>
       </nav>
       <section aria-labelledby="before-touring">
         <h2 id="before-touring" className="font-display text-2xl font-semibold">Before touring</h2>

@@ -4,7 +4,7 @@ A local guide to Corpus Christi and the Coastal Bend, at [ccbaylife.com](https:/
 
 ## Local development
 
-Requires Node 22. `.nvmrc`, `.node-version`, and `package.json` `engines` all pin that major. Workers Builds reads the version files, so the build does not need a `NODE_VERSION` variable. The Workers build image defaults to Node 24 without them.
+Use a current Node 22 release. The test tooling needs Node 22.12 or later within the 22.x line. `.nvmrc`, `.node-version`, and `package.json` `engines` all pin that major. Workers Builds reads the version files, so the build does not need a `NODE_VERSION` variable. The Workers build image defaults to Node 24 without them.
 
 ```bash
 npm install
@@ -23,10 +23,11 @@ Copy `.env.example` to `.env.local` if you want a different canonical origin whi
 | `npm run typecheck` | TypeScript, no emit |
 | `npm test` | Vitest |
 
-Preview the export the way Cloudflare will serve it:
+Check and preview the static export:
 
 ```bash
 npm run build
+node scripts/check-static-export.mjs
 npx --yes serve out
 ```
 
@@ -90,11 +91,25 @@ draft: true
 
 Images in a guide need explicit `width` and `height` so the page does not jump while they load. The sample guides have no content images.
 
+### Guide sources
+
+Guide front matter can include a curated public source list. Each item has a label, an absolute HTTPS URL, the date those details were actually checked, and an optional reader-facing caveat.
+
+```yaml
+sources:
+  - label: "National Park Service alerts and conditions"
+    url: "https://www.nps.gov/pais/planyourvisit/conditions.htm"
+    checked: "2026-11-22"
+    caveat: "Check surf, water quality, and closures before leaving."
+```
+
+Use `docs/sources/` to select useful references. Give checks their actual dates and use the article’s `updated` field for revisions to its editorial copy. The public HTML and all Markdown copies show this source list. Keep internal notes in the research docs.
+
 ## Events and relocation
 
 Edit the curated events in `content/events.json`. See the [release handoff](docs/cc-bay-life-release.md) for the weekly publishing check and launch review.
 
-The moving hub reads Kim Zill’s public profile and contact details from `src/config/realtor.ts`. Its contact links use native email and telephone handlers. **Owner and sponsoring broker review is required before rolling out the new presentation.** Add approved notice URLs through the config after that review.
+The moving hub reads Kim Zill’s public profile and contact details from `src/config/realtor.ts`. Its contact links use native email and telephone handlers. The live contact presentation is awaiting the sponsoring broker’s determination and approved notice URLs. See the release handoff for the pending decisions.
 
 ## Project layout
 

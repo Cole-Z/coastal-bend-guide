@@ -54,10 +54,10 @@ export function GuideMarkdownActions({ markdown, fileName, downloadHref }: Guide
             href={downloadHref}
             download={fileName}
             className={linkClass}
-            onClick={(event) => {
+            onClick={process.env.NODE_ENV === "development" ? (event) => {
               event.preventDefault();
               downloadMarkdown(markdown, fileName);
-            }}
+            } : undefined}
           >
             Download .md
           </a>

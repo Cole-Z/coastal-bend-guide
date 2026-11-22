@@ -6,7 +6,7 @@
  * The portrait is a local copy of the headshot on that page. Kim Zill gave
  * permission to use it. `width` and `height` are the 160px layout box.
  *
- * OWNER AND SPONSORING BROKER REVIEW REQUIRED BEFORE ROLLOUT.
+ * LIVE SITE: OWNER AND SPONSORING BROKER DETERMINATION PENDING.
  * See docs/cc-bay-life-release.md for the name, placement, brokerage and notice review.
  */
 export interface RealtorProfile {
