@@ -20,3 +20,5 @@ jobs:
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://ccbaylife.com
+      - name: Check static output
+        run: node scripts/check-static-export.mjs

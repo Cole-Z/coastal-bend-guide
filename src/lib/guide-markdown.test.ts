@@ -20,6 +20,7 @@ function sampleGuide(overrides: Partial<Guide> = {}): Guide {
     date: "2026-11-01",
     updated: "2026-11-14",
     draft: false,
+    sources: [],
     content: "## The drive\n\nLeave early.",
     ...overrides,
   };
@@ -42,6 +43,7 @@ describe("renderGuideMarkdown", () => {
     expect(markdown).toContain(realtor.profileUrl);
     expect(markdown).toContain(realtor.disclosure);
     expect(markdown).not.toContain("Draft:");
+    expect(markdown).not.toContain("Sources and verification");
   });
 
   it("omits the date line when the guide has no date and marks drafts", () => {
@@ -53,6 +55,28 @@ describe("renderGuideMarkdown", () => {
     expect(markdown).not.toContain("Updated ");
     expect(markdown).not.toContain("last_updated:");
     expect(markdown).toContain("Draft: this page is still being checked.");
+  });
+
+  it("renders dated public sources before the contact footer", () => {
+    const guide = sampleGuide({
+      sources: [
+        {
+          label: "National Park Service [alerts]",
+          url: "https://www.nps.gov/example_(park).htm",
+          checked: "2026-11-22",
+          caveat: "Check again before leaving.",
+        },
+        { label: "Park passes", url: "https://www.nps.gov/passes", checked: "2026-11-14" },
+      ],
+    });
+    const markdown = renderGuideMarkdown(guide, site, realtor);
+    expect(markdown).toContain(
+      "## Sources and verification\n\n" +
+      "- [National Park Service \\[alerts\\]](<https://www.nps.gov/example_(park).htm>) · Checked November 22, 2026. Check again before leaving.\n" +
+      "- [Park passes](<https://www.nps.gov/passes>) · Checked November 14, 2026.\n\n---",
+    );
+    expect(matter(markdown).data.last_updated).toBe("2026-11-14");
+    expect(guideExportFiles([guide], site, realtor)[1].body).toBe(markdown);
   });
 
   it("quotes titles that contain colons, quotes, and backslashes", () => {

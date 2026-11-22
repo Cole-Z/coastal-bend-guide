@@ -1,4 +1,5 @@
 export const SITE_NAME = "CC Bay Life";
+export const SITE_TITLE = `${SITE_NAME} — Corpus Christi and the Coastal Bend`;
 
 export const SITE_DESCRIPTION =
   "Plan a Corpus Christi weekend, pick a beach or restaurant, find local events, or compare neighborhoods before a move.";

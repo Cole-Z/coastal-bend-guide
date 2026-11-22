@@ -11,7 +11,7 @@ export function RealtorCard() {
   return (
     <section aria-labelledby={headingId} className="rounded-[2rem] bg-foam p-6 ring-1 ring-line sm:p-8">
       <JsonLd data={realtorAgentJsonLd(realtor, pageUrl)} />
-      <h2 id={headingId} className="font-display text-3xl font-semibold tracking-tight text-ink">
+      <h2 id={headingId} tabIndex={-1} className="font-display text-3xl font-semibold tracking-tight text-ink">
         Ask Kim about relocating
       </h2>
       <div className="mt-6 grid gap-6 sm:grid-cols-[160px_minmax(0,1fr)] sm:items-center">
@@ -37,19 +37,19 @@ export function RealtorCard() {
           {realtor.license ? <p className="mt-2 text-sm text-muted">{realtor.license}</p> : null}
           <div className="mt-5 flex flex-col items-start gap-3">
             <a
+              href={realtorMailto(realtor)}
+              className="inline-flex min-h-11 items-center rounded-full bg-ocean px-5 py-2.5 font-semibold text-ocean-ink"
+            >
+              Email Kim about moving
+            </a>
+            <a
               href={realtor.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-full bg-ocean px-5 py-2.5 font-semibold text-ocean-ink"
+              className="inline-flex min-h-11 items-center font-semibold text-ocean underline underline-offset-4"
             >
               {realtor.profileLinkLabel}
               <span className="sr-only"> (opens in a new tab)</span>
-            </a>
-            <a
-              href={realtorMailto(realtor)}
-              className="inline-flex rounded-full border border-ocean px-5 py-2.5 font-semibold text-ocean"
-            >
-              Email Kim about moving
             </a>
             <p className="break-all text-sm text-muted">{realtor.email}</p>
             {realtor.phone ? (

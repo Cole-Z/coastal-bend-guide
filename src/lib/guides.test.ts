@@ -25,6 +25,24 @@ describe("parseGuide", () => {
     expect(guide.content).toContain("Draft placeholder");
   });
 
+  it("accepts older source-free guides and validates nested source entries", () => {
+    expect(parseGuide("old-guide.mdx", RAW).sources).toEqual([]);
+    const sources = (url: string, checked: string, note = "") =>
+      RAW.replace(/draft: true/, `draft: true
+sources:
+  - label: "Park conditions"
+    url: "${url}"
+    checked: "${checked}"${note}`);
+
+    expect(parseGuide("park.mdx", sources("https://www.nps.gov/", "2026-11-22")).sources)
+      .toEqual([{ label: "Park conditions", url: "https://www.nps.gov/", checked: "2026-11-22" }]);
+    expect(() => parseGuide("park.mdx", sources("/relative", "2026-11-22"))).toThrow(/sources.0.url/);
+    expect(() => parseGuide("park.mdx", sources("http://www.nps.gov/", "2026-11-22"))).toThrow(/sources.0.url/);
+    expect(() => parseGuide("park.mdx", sources("https://www.nps.gov/", "2026-02-30"))).toThrow(/sources.0.checked/);
+    expect(() => parseGuide("park.mdx", sources("https://www.nps.gov/", "2026-11-22", "\n    confidence: internal")))
+      .toThrow(/confidence/);
+  });
+
   it("rejects a guide that is missing a title or uses an unknown section", () => {
     expect(() => parseGuide("bad.mdx", "---\nsection: beaches\n---\n")).toThrow(/invalid frontmatter/);
     expect(() =>
@@ -73,6 +91,7 @@ describe("sample guides", () => {
     ]);
     for (const guide of guides) {
       expect(guide.draft).toBe(!published.has(guide.slug));
+      if (!guide.draft) expect(guide.sources.length).toBeGreaterThan(0);
       expect(guide.content).not.toMatch(/Draft placeholder/);
     }
     const outlines = guides.filter((guide) => guide.slug.endsWith("-orientation"));
